@@ -6,7 +6,7 @@
 #    By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/28 13:03:05 by gwolf             #+#    #+#              #
-#    Updated: 2023/09/01 11:47:22 by sqiu             ###   ########.fr        #
+#    Updated: 2023/09/01 15:08:45 by sqiu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,9 @@ TEST := test
 # *     Source files           *
 # ******************************
 
-SRC :=	main.c
+SRC :=	mod_err_handling.c\
+		mod_input_check.c\
+		mod_utils.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 
 # ******************************
