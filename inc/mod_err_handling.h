@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:30:29 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/01 12:53:54 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/01 13:57:46 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@
 /* ====== DEFINITIONS ====== */
 
 typedef enum e_err{
-	ERR_ARGCOUNT
+	SUCCESS,
+	ERR_ARGCOUNT,
+	ERR_EMPTYSTR,
+	ERR_NONNUMERIC
 }	t_err;
 
 /* ====== DECLARATIONS ====== */
