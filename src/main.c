@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 19:35:18 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/01 12:05:45 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/01 15:46:54 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,15 @@
  */
 
 #include "philo.h"
+#include "metadata.h"
 
 int	main(int argc, char **argv)
 {
+	t_input	params;
+
 	ft_check_input(argc, argv);
-/* 	ft_init();
-	ft_feast();
+	ft_setup(argc, argv, &params);
+/* 	ft_feast();
 	if (philo == dead)
 		printf("Another one bites the dust\n");
 	else if (philo == fed)

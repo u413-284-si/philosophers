@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   mod_setup.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/29 19:07:06 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/01 15:47:14 by sqiu             ###   ########.fr       */
+/*   Created: 2023/09/01 15:28:33 by sqiu              #+#    #+#             */
+/*   Updated: 2023/09/01 15:47:21 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#ifndef MOD_SETUP_H
+# define MOD_SETUP_H
 
 /* ====== LIBRARIES ====== */
 
-# include <pthread.h>
-# include <stdbool.h>
-# include <stdio.h>
+# include "metadata.h"
+# include "mod_err_handling.h"
 
 /* ====== DECLARATIONS ====== */
-
-// input check
-void	ft_check_input(int argc, char **argv);
-
-// setup
-void	ft_setup(int argc, char **argv, t_input *params);
 
 #endif
