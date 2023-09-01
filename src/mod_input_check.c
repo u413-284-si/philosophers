@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:07:16 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/01 15:03:31 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/01 15:07:24 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_check_input(int argc, char **argv)
  * 6: above + optionally number_of_times_each_philosopher_must_eat
  * @param argc 	Amout of input arguments.
  */
-void	ft_check_arg(int argc)
+void	ft_check_argc(int argc)
 {
 	if (argc != 5 && argc != 6)
 		ft_print_err_and_exit(ERR_ARGCOUNT, \
