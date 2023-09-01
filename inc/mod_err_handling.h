@@ -6,12 +6,17 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:30:29 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/01 13:57:46 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/01 15:10:21 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MOD_ERR_HANDLING_H
 # define MOD_ERR_HANDLING_H
+
+/* ====== LIBRARIES ====== */
+
+# include <stdlib.h>
+# include <stdio.h>
 
 /* ====== DEFINITIONS ====== */
 
