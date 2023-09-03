@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:07:16 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/01 15:07:24 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/03 14:50:16 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	ft_check_num(int argc, char **argv)
 		j = -1;
 		while (argv[i][++j])
 			if (!ft_isdigit(argv[i][j]))
-				ft_print_err_and_exit(ERR_NONNUMERIC, "Input contains \
-				non-numeric characters. 👽\n");
+				ft_print_err_and_exit(ERR_NONNUMERIC, \
+				"Input contains non-numeric characters. 👽\n");
 	}
 }
