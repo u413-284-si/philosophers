@@ -6,7 +6,7 @@
 #    By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/28 13:03:05 by gwolf             #+#    #+#              #
-#    Updated: 2023/09/01 15:08:45 by sqiu             ###   ########.fr        #
+#    Updated: 2023/09/04 10:39:09 by sqiu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ SRC_DIR := src
 OBJ_DIR := obj
 INC_DIR := inc
 DEP_DIR := $(OBJ_DIR)/dep
-TEST_DIR := test
+TEST_DIR := test_dir
 
 # ******************************
 # *     Libraries              *
@@ -63,6 +63,7 @@ TEST := test
 
 SRC :=	mod_err_handling.c\
 		mod_input_check.c\
+		mod_setup.c\
 		mod_utils.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 
@@ -86,7 +87,7 @@ DEPFILES += $(DEP_DIR)/main.d
 # *     Test files             *
 # ******************************
 
-TEST_SRC := 
+TEST_SRC := test_input.c
 TEST_SRCS := $(addprefix $(TEST_DIR)/, $(TEST_SRC))
 TEST_OBJ := $(TEST_SRC:.c=.o)
 TEST_OBJS := $(addprefix $(TEST_DIR)/, $(TEST_OBJ))
@@ -150,8 +151,9 @@ valgr: $(NAME)
 # ******************************
 
 # Create the binary TEST, which has its own test_main.
+.PHONY: test
 $(TEST): CFLAGS = -g
-$(TEST): $(LIBFT) $(OBJS) $(TEST_OBJS) $(TEST_OBJ_MAIN)
+$(TEST): $(OBJS) $(TEST_OBJS) $(TEST_OBJ_MAIN)
 	@printf "\n$(YELLOW)$(BOLD)link test binary$(RESET) [$(BLUE)philo$(RESET)]\n"
 	$(CC) $(LDFLAGS) $(OBJS) $(TEST_OBJS) $(TEST_OBJ_MAIN) $(LDLIBS) -o $@
 	@printf "\n$(YELLOW)$(BOLD)compilation successful$(RESET) [$(BLUE)philo$(RESET)]\n"
