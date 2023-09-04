@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 19:07:06 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/04 10:31:43 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/04 18:59:28 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@
 void	ft_check_input(int argc, char **argv);
 
 // setup
-void	ft_setup(int argc, char **argv, t_input *params);
+void	ft_setup(int argc, char **argv, t_input *params, t_meta *data);
 
 #endif
