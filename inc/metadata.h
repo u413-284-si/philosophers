@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 15:34:01 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/01 15:40:18 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/04 11:14:11 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef struct s_input
 	int	time_to_die;
 	int	time_to_eat;
 	int	time_to_sleep;
-	int	req_eat;
+	int	req_meals;
 	int	start_time;
 }	t_input;
 
