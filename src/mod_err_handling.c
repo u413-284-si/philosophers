@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:29:56 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/04 19:31:01 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/04 20:09:46 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_print_err_and_exit(t_err err, char *msg)
  */
 void	ft_err_malloc(t_meta *data)
 {
-	printf("Malloc encountered an error. System reset initialised.\n")
+	printf("Malloc encountered an error. System reset initialised.\n");
 	ft_cleanup(data);
 	exit(ERR_MALLOC);
 }

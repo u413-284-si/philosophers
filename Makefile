@@ -6,7 +6,7 @@
 #    By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/28 13:03:05 by gwolf             #+#    #+#              #
-#    Updated: 2023/09/04 10:39:09 by sqiu             ###   ########.fr        #
+#    Updated: 2023/09/04 19:57:01 by sqiu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,8 @@ TEST := test
 # *     Source files           *
 # ******************************
 
-SRC :=	mod_err_handling.c\
+SRC :=	mod_cleanup.c\
+		mod_err_handling.c\
 		mod_input_check.c\
 		mod_setup.c\
 		mod_utils.c
