@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 19:35:18 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/01 15:46:54 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/03 15:48:52 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
  */
 
 #include "philo.h"
-#include "metadata.h"
 
 int	main(int argc, char **argv)
 {
