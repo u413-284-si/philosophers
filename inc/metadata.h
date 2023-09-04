@@ -6,23 +6,60 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 15:34:01 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/04 11:14:11 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/04 18:18:58 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef METADATA_H
 # define METADATA_H
 
+/* ====== LIBRARIES ====== */
+
+# include <pthread.h>
+# include <stdbool.h>
+
 /* ====== DEFINITIONS ====== */
 
 typedef struct s_input
 {
-	int	num_philos;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	req_meals;
-	int	start_time;
+	int		num_philos;
+	int		time_to_die;
+	int		time_to_eat;
+	int		time_to_sleep;
+	int		req_meals;
+	long	start_time;
 }	t_input;
+
+typedef struct s_fork
+{
+	bool			taken;
+	pthread_mutex_t	mtx_taken;
+}	t_fork;
+
+typedef enum e_status {
+	ACTIVE,
+	FULL,
+	DEAD
+}	t_status;
+
+typedef struct s_philo
+{
+	int				id;
+	pthread_t		thread;
+	t_fork			left_fork;
+	t_fork			*right_fork;
+	t_status		status;
+	pthread_mutex_t	mtx_status;
+	long			last_meal;
+	pthread_mutex_t	mtx_last_meal;
+	int				meal_count;
+	pthread_mutex_t	mtx_meal_count;
+}	t_philo;
+
+typedef struct s_meta
+{
+	t_philo		*philos;
+	t_fork		*forks;
+}	t_meta;
 
 #endif
