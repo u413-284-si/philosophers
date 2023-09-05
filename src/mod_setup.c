@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 15:28:21 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/04 19:23:01 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/05 12:03:14 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_setup(int argc, char **argv, t_input *params, t_meta *data)
 	if (params->num_philos == 0 || params->time_to_die == 0)
 		ft_print_err_and_exit(ERR_ZEROINPUT, \
 		"Number of philosophers and time_to_die cannot be 0. 😘 \n");
-	ft_initiate(data, params->num_philos);
+	ft_init_var(data, params->num_philos);
 }
 
 /**
@@ -61,9 +61,45 @@ int	ft_convert_str_to_num(char *str)
 	return ((int)buf);
 }
 
-void	ft_initiate(t_meta *data, int num_philos)
+/**
+ * @brief Reserves memory for program variables and
+ * intialises them.
+ * 
+ * @param data 			Struct with metadata of the program.
+ * @param num_philos 	Amount of philosophers.
+ */
+void	ft_init_var(t_meta *data, int num_philos)
 {
 	data->philos = ft_calloc(num_philos, sizeof(t_philo));
 	if (!data->philos)
 		ft_err_malloc(data);
+	ft_init_values(data, num_philos);
+	ft_init_mutexes(data);
+}
+
+/**
+ * @brief Sets variables to initiate values.
+ * 
+ * Assign philosopher ID starting from 1 to amount of philosophers.
+ * The right forks are given the address of the left fork of the
+ * following philospher (left fork already malloced inside philospher).
+ * The last philosopher receives the address of the first philosophers
+ * left fork.
+ * Status, last_meal and meal_count are already set to 0.
+ * @param data 			Struct with metadata of the program.
+ * @param num_philos 	Amount of philosophers.
+ */
+void	ft_init_values(t_meta *data, int num_philos)
+{
+	int	i;
+
+	i = -1;
+	while (++i < num_philos)
+	{
+		data->philos[i].id = i + 1;
+		if (i == num_philos - 1)
+			data->philos[i].right_fork = &data->philos[0].left_fork;
+		else
+			data->philos[i].right_fork = &data->philos[i + 1].left_fork;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 15:28:33 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/04 19:14:35 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/05 11:37:00 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 
 /* ====== DECLARATIONS ====== */
 int		ft_convert_str_to_num(char *str);
-void	ft_initiate(t_meta *data, int num_philos);
+void	ft_init_var(t_meta *data, int num_philos);
+void	ft_init_values(t_meta *data, int num_philos);
 
 // import from mod_utils
 long	ft_atoi(const char *str);
