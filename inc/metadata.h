@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 15:34:01 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/04 18:18:58 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/05 11:46:01 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ typedef struct s_philo
 
 typedef struct s_meta
 {
-	t_philo		*philos;
-	t_fork		*forks;
+	t_philo			*philos;
+	pthread_mutex_t	mtx_speak;
 }	t_meta;
 
 #endif
