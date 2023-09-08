@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 19:34:04 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/08 11:35:23 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/08 12:46:15 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,6 @@
 # include "mod_err_handling.h"
 
 /* ====== DECLARATIONS ====== */
+void	ft_destroy_philo_mutexes(t_philo *philos, int num_philos);
 
 #endif
