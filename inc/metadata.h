@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 15:34:01 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/08 11:47:09 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/08 14:08:57 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ typedef struct s_input
 	int		time_to_eat;
 	int		time_to_sleep;
 	int		req_meals;
-	long	start_time;
 }	t_input;
 
 typedef struct s_fork
@@ -60,6 +59,7 @@ typedef struct s_meta
 {
 	t_philo			*philos;
 	t_input			*params;
+	long			start_time;
 	pthread_mutex_t	mtx_speak;
 }	t_meta;
 
