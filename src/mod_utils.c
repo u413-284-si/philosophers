@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 13:52:39 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/04 19:13:50 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/08 12:48:17 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
  * @brief Helper functions.
  */
 
+#include <stdlib.h>
 #include <stddef.h>
 #include <limits.h>
 
