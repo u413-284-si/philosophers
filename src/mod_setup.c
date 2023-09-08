@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 15:28:21 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/08 11:52:41 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/08 15:13:00 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_setup(int argc, char **argv, t_input *params, t_meta *data)
 	if (argc == 6)
 		params->req_meals = ft_convert_str_to_num(argv[5]);
 	if (params->num_philos == 0 || params->time_to_die == 0)
-		ft_print_err_and_exit(ERR_ZEROINPUT, \
+		ft_print_err_and_exit(ERR_ZEROINPUT, false, \
 		"Number of philosophers and time_to_die cannot be 0. 😘 \n");
 	data->params = params;
 	ft_init_var(data);
@@ -55,10 +55,10 @@ int	ft_convert_str_to_num(char *str)
 
 	buf = ft_atoi(str);
 	if (buf < -2147483648 || buf > 2147483647)
-		ft_print_err_and_exit(ERR_OVERFLOW, \
+		ft_print_err_and_exit(ERR_OVERFLOW, false, \
 		"Input value larger than int. 😩\n");
 	if (buf < 0)
-		ft_print_err_and_exit(ERR_NEGATIVINPUT, \
+		ft_print_err_and_exit(ERR_NEGATIVINPUT, false, \
 		"No negative values accepted. 💀\n");
 	return ((int)buf);
 }

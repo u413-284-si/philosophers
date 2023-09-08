@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:29:56 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/08 11:29:03 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/08 15:10:11 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,28 @@
 /**
  * @brief Prints the provided error message and exits with the given error code.
  * 
+ * If errno was set, perror is used to print out the error message and code.
  * Optionally prints out instruction on program usage in case of user errors.
- * @param err 	Given error code.
- * @param msg 	Given error message.
+ * @param err 			Given error code.
+ * @param errno_set		Boolean to indicate an error which set errno.
+ * @param msg 			Given error message.
  */
-void	ft_print_err_and_exit(t_err err, char *msg)
+void	ft_print_err_and_exit(t_err err, bool errno_set, char *msg)
 {
-	printf("%s\n", msg);
-	if (err == ERR_ARGCOUNT || err == ERR_EMPTYSTR || err == ERR_NONNUMERIC
-		|| err == ERR_NEGATIVINPUT)
-		printf("Correct input: ./philo \tnumber_of_philosophers \n\
-			time_to_die \n\
-			time_to_eat \n\
-			time_to_sleep \n\
-			[number_of_times_each_philosopher_must_eat] 🐥\n");
-	exit (err);
+	if (errno_set)
+		perror(msg);
+	else
+	{
+		printf("%s\n", msg);
+		if (err == ERR_ARGCOUNT || err == ERR_EMPTYSTR || err == ERR_NONNUMERIC
+			|| err == ERR_NEGATIVINPUT)
+			printf("Correct input: ./philo \tnumber_of_philosophers \n\
+				time_to_die \n\
+				time_to_eat \n\
+				time_to_sleep \n\
+				[number_of_times_each_philosopher_must_eat] 🐥\n");
+		exit (err);
+	}
 }
 
 /**
