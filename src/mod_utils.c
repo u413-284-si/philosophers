@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 13:52:39 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/08 12:48:17 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/08 15:22:07 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,8 @@
  * @brief Helper functions.
  */
 
-#include <stdlib.h>
-#include <stddef.h>
-#include <limits.h>
+#include "mod_utils.h"
+#include "mod_err_handling.h"
 
 /**
  * @brief Checks if provided character is a digit.
@@ -100,4 +99,17 @@ void	*ft_calloc(size_t nmemb, size_t size)
 		return (NULL);
 	ft_bzero(arr, nmemb * size);
 	return (arr);
+}
+
+long	ft_get_time(t_meta *data)
+{
+	struct timeval	tv;
+	long			time;
+
+	errno = 0;
+	if (gettimeofday(&tv, NULL) == -1)
+	{
+		ft_cleanup(data);
+		ft_print_err_and_exit(SUCCESS, true, "Gettimeofday() failed.");
+	}
 }
