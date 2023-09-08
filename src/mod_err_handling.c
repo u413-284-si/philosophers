@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:29:56 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/04 20:09:46 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/08 11:29:03 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,18 @@ void	ft_err_malloc(t_meta *data)
 	printf("Malloc encountered an error. System reset initialised.\n");
 	ft_cleanup(data);
 	exit(ERR_MALLOC);
+}
+
+/**
+ * @brief Handles error case when mutex init failed.
+ * 
+ * Prints error message.
+ * Calls cleanup function to free reserved memory.
+ * @param data 	Struct with metadata of the program.
+ */
+void	ft_err_mutex_init(t_meta *data)
+{
+	printf("Mutex init encountered an error. System reset initialised.\n");
+	ft_cleanup(data);
+	exit(ERR_MUTEX_INIT);
 }
