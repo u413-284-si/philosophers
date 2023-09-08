@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   mod_feast.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/28 19:35:18 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/08 14:03:54 by sqiu             ###   ########.fr       */
+/*   Created: 2023/09/08 14:04:16 by sqiu              #+#    #+#             */
+/*   Updated: 2023/09/08 14:12:08 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
- * @file main.c
- * @brief Contains initial thread executing the main routine.
+ * @file mod_feast.c
+ * @brief Functions to launch the simulation of feasting philosophers.
  */
 
-#include "philo.h"
+#include "mod_feast.h"
 
-int	main(int argc, char **argv)
+void	ft_feast(t_meta *data)
 {
-	t_input	params;
-	t_meta	data;
+	ft_start_shot(data);
+}
 
-	ft_check_input(argc, argv);
-	ft_setup(argc, argv, &params, &data);
-	ft_feast(&data);
-/*	if (philo == dead)
-		printf("Another one bites the dust\n");
-	else if (philo == fed)
-		printf("Ich bin so satt, ich mag kein Blatt\n");
-	ft_cleanup(); */
-	return (0);
+void	ft_start_shot(t_meta *data)
+{
+	
 }
