@@ -6,14 +6,14 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 15:34:01 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/05 11:46:01 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/08 11:47:09 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef METADATA_H
 # define METADATA_H
 
-/* ====== LIBRARIES ====== */
+	/* ====== LIBRARIES ====== */
 
 # include <pthread.h>
 # include <stdbool.h>
@@ -59,6 +59,7 @@ typedef struct s_philo
 typedef struct s_meta
 {
 	t_philo			*philos;
+	t_input			*params;
 	pthread_mutex_t	mtx_speak;
 }	t_meta;
 
