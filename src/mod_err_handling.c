@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:29:56 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/09 12:13:35 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/09 12:44:54 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,15 +67,16 @@ void	ft_err_mutex_init(t_meta *data)
 }
 
 /**
- * @brief Handles error case when mutex create failed.
+ * @brief Handles error case when thread creation failed.
  * 
  * Prints error message.
  * Calls cleanup function to free reserved memory.
  * @param data 	Struct with metadata of the program.
  */
-void	ft_err_mutex_init(t_meta *data)
+void	ft_err_thread_create(t_meta *data)
 {
-	printf("Mutex create encountered an error. System reset initialised.\n");
+	printf("Thread creation encountered an error. System reset initialised.\n");
+	ft_stop_join_threads(data);
 	ft_cleanup(data);
-	exit(ERR_MUTEX_CREATE);
+	exit(ERR_THREAD_CREATE);
 }
