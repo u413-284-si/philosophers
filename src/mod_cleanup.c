@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 19:33:37 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/08 15:12:24 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/09 12:13:21 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_cleanup(t_meta *data)
 {
 	//Check if mutex existent
 	if (pthread_mutex_destroy(&data->mtx_speak) != 0)
-		ft_print_err_and_exit(ERR_MUTEX_DESTROY, false, \
+		ft_print_err_and_exit(ERR_MUTEX_DESTROY, \
 		"Failed to destroy mtx_speak. 😵‍💫\n");
 	if (data->philos)
 	{
@@ -53,19 +53,19 @@ void	ft_destroy_philo_mutexes(t_philo *philos, int num_philos)
 	{
 		//Check
 		if (pthread_mutex_destroy(&philos[i].mtx_status) != 0)
-			ft_print_err_and_exit(ERR_MUTEX_DESTROY, false, \
+			ft_print_err_and_exit(ERR_MUTEX_DESTROY, \
 			"Failed to destroy mtx_status. 😵‍💫\n");
 		//Check
 		if (pthread_mutex_destroy(&philos[i].mtx_meal_count) != 0)
-			ft_print_err_and_exit(ERR_MUTEX_DESTROY, false, \
+			ft_print_err_and_exit(ERR_MUTEX_DESTROY, \
 			"Failed to destroy mtx_meal_count. 😵‍💫\n");
 		//Check
 		if (pthread_mutex_destroy(&philos[i].mtx_last_meal) != 0)
-			ft_print_err_and_exit(ERR_MUTEX_DESTROY, false, \
+			ft_print_err_and_exit(ERR_MUTEX_DESTROY, \
 			"Failed to destroy mtx_last_meal. 😵‍💫\n");
 		//Check
 		if (pthread_mutex_destroy(&philos[i].left_fork.mtx_taken) != 0)
-			ft_print_err_and_exit(ERR_MUTEX_DESTROY, false, \
+			ft_print_err_and_exit(ERR_MUTEX_DESTROY, \
 			"Failed to destroy mtx_fork_taken. 😵‍💫\n");
 	}
 }

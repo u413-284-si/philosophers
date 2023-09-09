@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:07:16 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/08 15:16:27 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/09 12:14:04 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_check_input(int argc, char **argv)
 void	ft_check_argc(int argc)
 {
 	if (argc != 5 && argc != 6)
-		ft_print_err_and_exit(ERR_ARGCOUNT, false, \
+		ft_print_err_and_exit(ERR_ARGCOUNT, \
 		"Expect 4, optionally 5 arguments. 🙄\n");
 }
 
@@ -66,7 +66,7 @@ void	ft_check_empty_str(int argc, char **argv)
 	i = 0;
 	while (++i < argc)
 		if (argv[i][0] == '\0')
-			ft_print_err_and_exit(ERR_EMPTYSTR, false, \
+			ft_print_err_and_exit(ERR_EMPTYSTR, \
 				"Empty string encountered. 🥴\n");
 }
 
@@ -91,7 +91,7 @@ void	ft_check_num(int argc, char **argv)
 		j = -1;
 		while (argv[i][++j])
 			if (!ft_isdigit(argv[i][j]))
-				ft_print_err_and_exit(ERR_NONNUMERIC, false, \
+				ft_print_err_and_exit(ERR_NONNUMERIC, \
 				"Input contains non-numeric characters. 👽\n");
 	}
 }

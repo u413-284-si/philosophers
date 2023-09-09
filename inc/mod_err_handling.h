@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:30:29 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/08 15:13:00 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/09 12:14:41 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,13 @@ typedef enum e_err{
 	ERR_ZEROINPUT,
 	ERR_MALLOC,
 	ERR_MUTEX_INIT,
-	ERR_MUTEX_DESTROY
+	ERR_MUTEX_DESTROY,
+	ERR_MUTEX_CREATE
 }	t_err;
 
 /* ====== DECLARATIONS ====== */
 
-void	ft_print_err_and_exit(t_err err, bool errno_set, char *msg);
+void	ft_print_err_and_exit(t_err err, char *msg);
 void	ft_err_malloc(t_meta *data);
 void	ft_err_mutex_init(t_meta *data);
 
