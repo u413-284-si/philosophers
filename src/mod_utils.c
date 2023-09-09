@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 13:52:39 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/08 15:22:07 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/09 12:16:27 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,10 @@ long	ft_get_time(t_meta *data)
 	errno = 0;
 	if (gettimeofday(&tv, NULL) == -1)
 	{
+		perror("Gettimeofday() failed.");
 		ft_cleanup(data);
-		ft_print_err_and_exit(SUCCESS, true, "Gettimeofday() failed.");
+		exit(errno);
 	}
+	time = tv.tv_sec * 1000 + tv.tv_usec / 1000;
+	return (time);
 }
