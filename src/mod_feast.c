@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 14:04:16 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/08 14:12:08 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/09 12:02:33 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,29 @@
 
 #include "mod_feast.h"
 
+/**
+ * @brief Simulates the bacchanal life of philosophers.
+ * 
+ * Initially sets the starting time of the simulation.
+ * @param data 		Struct with metadata of the program.
+ */
 void	ft_feast(t_meta *data)
 {
 	ft_start_shot(data);
 }
 
+/**
+ * @brief Retrieves current time in ms.
+ * 
+ * Assigns timestamp to last_meal of each philo.
+ * @param data 		Struct with metadata of the program.
+ */
 void	ft_start_shot(t_meta *data)
 {
-	
+	int	i;
+
+	data->start_time = ft_get_time(data);
+	i = -1;
+	while (++i < data->params->num_philos)
+		data->philos[i].last_meal = data->start_time;
 }
