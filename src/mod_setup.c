@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 15:28:21 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/10 11:47:22 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/10 19:20:07 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,12 @@ void	ft_setup(int argc, char **argv, t_input *params, t_meta *data)
 	params->time_to_eat = ft_convert_str_to_num(argv[3]);
 	params->time_to_sleep = ft_convert_str_to_num(argv[4]);
 	if (argc == 6)
+	{
 		params->req_meals = ft_convert_str_to_num(argv[5]);
+		params->check_meals = true;
+	}
+	else
+		params->check_meals = false;
 	if (params->num_philos == 0 || params->time_to_die == 0)
 		ft_print_err_and_exit(ERR_ZEROINPUT, \
 		"Number of philosophers and time_to_die cannot be 0. 😘 \n");
