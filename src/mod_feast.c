@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 14:04:16 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/09 12:39:13 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/10 11:48:52 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_start_shot(t_meta *data)
 
 	data->start_time = ft_get_time(data);
 	i = -1;
-	while (++i < data->params->num_philos)
+	while (++i < data->philos->params->num_philos)
 		data->philos[i].last_meal = data->start_time;
 }
 
@@ -50,11 +50,11 @@ void	ft_let_em_live(t_meta *data)
 	int	i;
 
 	i = -1;
-	while (++i < data->params->num_philos)
+	while (++i < data->philos->params->num_philos)
 	{
 		if (pthread_create(data->philos[i].thread, NULL, ft_philo_routine, \
 			&data->philos[i]) != 0)
-			ft_err_mutex_create(data);
+			ft_err_thread_create(data);
 	}
 }
 

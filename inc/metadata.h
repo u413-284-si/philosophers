@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 15:34:01 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/08 14:08:57 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/10 11:45:55 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ typedef struct s_philo
 	pthread_mutex_t	mtx_last_meal;
 	int				meal_count;
 	pthread_mutex_t	mtx_meal_count;
+	t_input			*params;
 }	t_philo;
 
 typedef struct s_meta
 {
 	t_philo			*philos;
-	t_input			*params;
 	long			start_time;
 	pthread_mutex_t	mtx_speak;
 }	t_meta;
