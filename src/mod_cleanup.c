@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 19:33:37 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/09 12:13:21 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/10 18:24:07 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void	ft_cleanup(t_meta *data)
 		"Failed to destroy mtx_speak. 😵‍💫\n");
 	if (data->philos)
 	{
-		ft_destroy_philo_mutexes(data->philos, data->params->num_philos);
+		ft_destroy_philo_mutexes(data->philos, \
+			data->philos->params->num_philos);
 		free(data->philos);
 	}
 	printf("System cleanup successful. \
