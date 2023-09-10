@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 15:34:01 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/10 19:19:16 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/10 21:21:28 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct s_meta
 {
 	t_philo			*philos;
 	long			start_time;
+	bool			speak;
 	pthread_mutex_t	mtx_speak;
 }	t_meta;
 

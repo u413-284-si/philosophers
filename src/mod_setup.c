@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 15:28:21 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/10 19:20:07 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/10 21:10:20 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	ft_init_var(t_meta *data)
 /**
  * @brief Sets variables to initiate values.
  * 
+ * Set Boolean speak to true.
  * Assign philosopher ID starting from 1 to amount of philosophers.
  * The right forks are given the address of the left fork of the
  * following philospher (left fork already malloced inside philospher).
@@ -97,6 +98,7 @@ void	ft_init_values(t_meta *data)
 {
 	int	i;
 
+	data->speak = true;
 	i = -1;
 	while (++i < data->philos->params->num_philos)
 	{
