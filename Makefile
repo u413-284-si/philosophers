@@ -6,7 +6,7 @@
 #    By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/28 13:03:05 by gwolf             #+#    #+#              #
-#    Updated: 2023/09/09 12:49:53 by sqiu             ###   ########.fr        #
+#    Updated: 2023/09/10 21:24:17 by sqiu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,9 @@ SRC :=	mod_cleanup.c\
 		mod_feast.c\
 		mod_input_check.c\
 		mod_mutex_init.c\
+		mod_philo_check.c\
 		mod_philo_routine.c\
+		mod_philo_utils.c\
 		mod_setup.c\
 		mod_utils.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
