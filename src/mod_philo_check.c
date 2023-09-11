@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 17:01:35 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/10 23:39:27 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/11 10:15:39 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,14 @@ void	ft_manage_philos(t_meta *data)
 }
 
 /**
- * @brief 
+ * @brief Check whether the philosopher has starved due
+ * to the period since the last meal was consumed is
+ * greater than the time to die.
  * 
- * @param philo 
- * @param data 
- * @return true 
- * @return false 
+ * @param philo 	Philo in question.
+ * @param data 		Struct with metadata of the program.
+ * @return true 	Philo has starved.
+ * @return false 	Philo is still kicking it.
  */
 bool	ft_starved(t_philo *philo, t_meta *data)
 {
@@ -76,6 +78,12 @@ bool	ft_starved(t_philo *philo, t_meta *data)
 	return (ded);
 }
 
+/**
+ * @brief Check whether the philo has eaten enough meals
+ * to be declared as fed.
+ * 
+ * @param philo 	Philo in question.
+ */
 void	ft_is_fed(t_philo *philo)
 {
 	bool	fed;
@@ -89,6 +97,13 @@ void	ft_is_fed(t_philo *philo)
 		ft_set_status(philo, FULL);
 }
 
+/**
+ * @brief Check whether all philos have attained the status FULL.
+ * 
+ * @param philos 	Pointer to array of philos.
+ * @return true 	All philos are fed.
+ * @return false 	Not all philos are fed.
+ */
 bool	ft_all_fed(t_philo *philos)
 {
 	int	i;
