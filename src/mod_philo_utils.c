@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 21:14:40 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/11 15:56:54 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/11 16:30:15 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_declare(t_philo *philo, char *str, bool so_ded)
 }
 
 /**
- * @brief Sets the status of the given philo.
+ * @brief Set the status of the given philo.
  * 
  * To ensure atomic setting of the status, its mutex is
  * first locked and unlocked after the operation.
@@ -52,6 +52,24 @@ void	ft_set_status(t_philo *philo, t_status status)
 	pthread_mutex_lock(&philo->mtx_status);
 	philo->status = status;
 	pthread_mutex_unlock(&philo->mtx_status);
+}
+
+/**
+ * @brief Get the status of the given philo.
+ * 
+ * To ensure atomic getting of the status, its mutex is
+ * first locked and unlocked after the operation.
+ * @param philo 	Philo whose status is to be retrieved.
+ * @return status 	Status retrieved.
+ */
+t_status	ft_get_status(t_philo *philo)
+{
+	t_status	status;
+
+	pthread_mutex_lock(&philo->mtx_status);
+	status = philo->status;
+	pthread_mutex_unlock(&philo->mtx_status);
+	return (status);
 }
 
 /**

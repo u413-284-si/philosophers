@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 13:47:06 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/11 15:59:58 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/11 16:31:55 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 int	ft_take_fork(t_philo *philo, t_fork *fork)
 {
 	pthread_mutex_lock(&fork->mtx_taken);
-	if (ft_starved(philo))
+	if (ft_starved(philo) || ft_get_status(philo) == DEAD)
 	{
 		pthread_mutex_unlock(&fork->mtx_taken);
 		return (-1);
