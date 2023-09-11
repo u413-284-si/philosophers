@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 21:14:40 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/11 10:47:37 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/11 11:18:42 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,29 @@ void	ft_set_status(t_philo *philo, t_status status)
 	pthread_mutex_lock(&philo->mtx_status);
 	philo->status = status;
 	pthread_mutex_unlock(&philo->mtx_status);
+}
+
+/**
+ * @brief Induces calling thread to sleep for specified
+ * timespan (ms).
+ * 
+ * Allows values greater than 1s to be slept for (usleep
+ * only accepts values up to 1.000.000 microsecs).
+ * Approaching the specified timespan incrementally also
+ * increases accuracy as usleep is not guaranteed to 
+ * actually sleep for the demanded time.
+ * @param timespan_to_wait 		Time in ms.
+ */
+void	ft_rest(long timespan_to_wait)
+{
+	long	start;
+	long	elapsed;
+
+	start = ft_get_time();
+	elapsed = 0;
+	while (timespan_to_wait - elapsed > 0)
+	{
+		usleep(10);
+		elapsed = ft_get_time() - start;
+	}
 }
