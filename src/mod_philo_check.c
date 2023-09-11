@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 17:01:35 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/11 13:45:20 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/11 17:00:15 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	ft_is_fed(t_philo *philo)
 	if (philo->meal_count >= philo->params->req_meals)
 		fed = true;
 	pthread_mutex_unlock(&philo->mtx_meal_count);
-	if (fed && philo->status != FULL)
+	if (fed && ft_get_status(philo) != FULL)
 		ft_set_status(philo, FULL);
 }
 
@@ -109,7 +109,25 @@ bool	ft_all_fed(t_philo *philos)
 
 	i = -1;
 	while (++i < philos->params->num_philos)
-		if (philos[i].status != FULL)
+		if (ft_get_status(&philos[i]) != FULL)
 			return (false);
 	return (true);
+}
+
+/**
+ * @brief Check whether a philo died.
+ * 
+ * @param philos 	Pointer to array of philos.
+ * @return true 	A philo died.
+ * @return false 	None died.
+ */
+bool	ft_check_for_dead(t_philo *philos)
+{
+	int	i;
+
+	i = -1;
+	while (++i < philos->params->num_philos)
+		if (ft_get_status(&philos[i]) == DEAD)
+			return (true);
+	return (false);
 }
