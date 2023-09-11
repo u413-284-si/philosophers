@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 13:52:39 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/09 12:22:51 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/11 10:44:24 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,10 +108,9 @@ void	*ft_calloc(size_t nmemb, size_t size)
  * On error errno is set and perror used to print
  * the error message. System cleanup is initiated.
  * Program is exited with errno.
- * @param data 		Struct with metadata of the program.
  * @return long 	Time stamp in ms.
  */
-long	ft_get_time(t_meta *data)
+long	ft_get_time(void)
 {
 	struct timeval	tv;
 	long			time;
@@ -120,8 +119,7 @@ long	ft_get_time(t_meta *data)
 	if (gettimeofday(&tv, NULL) == -1)
 	{
 		perror("Gettimeofday() failed.");
-		ft_cleanup(data);
-		exit(errno);
+		return (-1);
 	}
 	time = tv.tv_sec * 1000 + tv.tv_usec / 1000;
 	return (time);

@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 14:04:16 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/11 10:30:15 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/11 10:45:22 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_start_shot(t_meta *data)
 {
 	int	i;
 
-	data->philos->params->start_time = ft_get_time(data);
+	data->philos->params->start_time = ft_get_time();
 	i = -1;
 	while (++i < data->philos->params->num_philos)
 		data->philos[i].last_meal = data->philos->params->start_time;

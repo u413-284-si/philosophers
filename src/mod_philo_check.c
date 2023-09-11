@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 17:01:35 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/11 10:15:39 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/11 10:45:35 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ bool	ft_starved(t_philo *philo, t_meta *data)
 
 	ded = false;
 	pthread_mutex_lock(&philo->mtx_last_meal);
-	if (ft_get_time(data) - philo->last_meal > philo->params->time_to_die)
+	if (ft_get_time() - philo->last_meal > philo->params->time_to_die)
 		ded = true;
 	pthread_mutex_unlock(&philo->mtx_last_meal);
 	if (ded)
