@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 21:15:01 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/11 16:30:37 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/11 17:21:58 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 /* ====== LIBRARIES ====== */
 # include <unistd.h>
+# include <stdio.h>
 
 # include "metadata.h"
 

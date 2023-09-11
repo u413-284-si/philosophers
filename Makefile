@@ -6,7 +6,7 @@
 #    By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/28 13:03:05 by gwolf             #+#    #+#              #
-#    Updated: 2023/09/10 21:24:17 by sqiu             ###   ########.fr        #
+#    Updated: 2023/09/11 17:24:40 by sqiu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,6 +64,7 @@ TEST := test
 SRC :=	mod_cleanup.c\
 		mod_err_handling.c\
 		mod_feast.c\
+		mod_forks.c\
 		mod_input_check.c\
 		mod_mutex_init.c\
 		mod_philo_check.c\
