@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 17:01:35 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/11 10:48:12 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/11 13:45:20 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_manage_philos(t_meta *data)
 		i = -1;
 		while (++i < data->philos->params->num_philos)
 		{
-			if (ft_starved(&data->philos[i], data))
+			if (ft_starved(&data->philos[i]))
 			{
 				abort = true;
 				break ;
@@ -57,11 +57,10 @@ void	ft_manage_philos(t_meta *data)
  * greater than the time to die.
  * 
  * @param philo 	Philo in question.
- * @param data 		Struct with metadata of the program.
  * @return true 	Philo has starved.
  * @return false 	Philo is still kicking it.
  */
-bool	ft_starved(t_philo *philo, t_meta *data)
+bool	ft_starved(t_philo *philo)
 {
 	bool	ded;
 
