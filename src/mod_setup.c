@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 15:28:21 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/10 21:10:20 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/11 10:40:52 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ void	ft_setup(int argc, char **argv, t_input *params, t_meta *data)
 	if (params->num_philos == 0 || params->time_to_die == 0)
 		ft_print_err_and_exit(ERR_ZEROINPUT, \
 		"Number of philosophers and time_to_die cannot be 0. 😘 \n");
-	data->philos->params = params;
-	ft_init_var(data);
+	ft_init_var(data, params);
 	ft_init_mutexes(data);
 }
 
@@ -73,13 +72,14 @@ int	ft_convert_str_to_num(char *str)
  * intialises them.
  * 
  * @param data 			Struct with metadata of the program.
+ * @param params 		Struct to save and provide input parameters to the program.
  */
-void	ft_init_var(t_meta *data)
+void	ft_init_var(t_meta *data, t_input *params)
 {
 	data->philos = ft_calloc(data->philos->params->num_philos, sizeof(t_philo));
 	if (!data->philos)
 		ft_err_malloc(data);
-	ft_init_values(data);
+	ft_init_values(data, params);
 }
 
 /**
@@ -93,8 +93,9 @@ void	ft_init_var(t_meta *data)
  * left fork.
  * Status, last_meal and meal_count are already set to 0.
  * @param data 			Struct with metadata of the program.
+ * @param params 		Struct to save and provide input parameters to the program.
  */
-void	ft_init_values(t_meta *data)
+void	ft_init_values(t_meta *data, t_input *params)
 {
 	int	i;
 
@@ -107,5 +108,8 @@ void	ft_init_values(t_meta *data)
 			data->philos[i].right_fork = &data->philos[0].left_fork;
 		else
 			data->philos[i].right_fork = &data->philos[i + 1].left_fork;
+		data->philos[i].params = params;
+		data->philos[i].speak = &data->speak;
+		data->philos[i].mtx_speak = &data->mtx_speak;
 	}
 }
