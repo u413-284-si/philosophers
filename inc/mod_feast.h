@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 14:04:26 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/11 10:44:58 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/11 10:51:18 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "mod_err_handling.h"
 
 /* ====== DECLARATIONS ====== */
-void	ft_start_shot(t_meta *data);
+void	ft_start_shot(t_philo *philos);
 void	ft_let_em_live(t_meta *data);
 void	ft_bring_em_home(t_meta *data);
 

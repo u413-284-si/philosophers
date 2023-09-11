@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 14:04:16 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/11 10:45:22 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/11 10:52:04 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
  */
 void	ft_feast(t_meta *data)
 {
-	ft_start_shot(data);
+	ft_start_shot(data->philos);
 	ft_let_em_live(data);
 	ft_manage_philos(data);
 	ft_bring_em_home(data);
@@ -35,16 +35,16 @@ void	ft_feast(t_meta *data)
  * @brief Retrieves current time in ms.
  * 
  * Assigns timestamp to last_meal of each philo.
- * @param data 		Struct with metadata of the program.
+ * @param philos 		Pointer to array of philos.
  */
-void	ft_start_shot(t_meta *data)
+void	ft_start_shot(t_philo *philos)
 {
 	int	i;
 
-	data->philos->params->start_time = ft_get_time();
+	philos->params->start_time = ft_get_time();
 	i = -1;
-	while (++i < data->philos->params->num_philos)
-		data->philos[i].last_meal = data->philos->params->start_time;
+	while (++i < philos->params->num_philos)
+		philos[i].last_meal = philos->params->start_time;
 }
 
 /**
