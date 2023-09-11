@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 21:15:01 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/11 11:18:56 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/11 14:18:28 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 void	ft_declare(t_philo *philo, char *str, bool so_ded);
 void	ft_set_status(t_philo *philo, t_status status);
 void	ft_rest(long timespan_to_wait);
+void	ft_set_meal_stats(t_philo *philo);
 
 //import from mod_utils
 long	ft_get_time(void);

@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 21:14:40 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/11 11:18:42 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/11 15:41:03 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,18 @@ void	ft_rest(long timespan_to_wait)
 	{
 		usleep(10);
 		elapsed = ft_get_time() - start;
+	}
+}
+
+void	ft_set_meal_stats(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->mtx_last_meal);
+	philo->last_meal = ft_get_time();
+	pthread_mutex_unlock(&philo->mtx_last_meal);
+	if (philo->params->check_meals == true)
+	{
+		pthread_mutex_lock(&philo->mtx_meal_count);
+		philo->meal_count++;
+		pthread_mutex_unlock(&philo->mtx_meal_count);
 	}
 }
