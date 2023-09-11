@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 21:14:40 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/10 23:34:38 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/11 10:30:48 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_declare(t_philo *philo, t_meta *data, char *str, bool so_ded)
 {
 	long	time_elapsed;
 
-	time_elapsed = ft_get_time(data) - data->start_time;
+	time_elapsed = ft_get_time(data) - philo->params->start_time;
 	pthread_mutex_unlock(&data->mtx_speak);
 	if (data->speak)
 		printf("%ld %d %s", time_elapsed, philo->id, str);
