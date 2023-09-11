@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:29:56 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/09 12:44:54 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/11 16:46:48 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,29 @@ void	ft_err_mutex_init(t_meta *data)
  * 
  * Prints error message.
  * Calls cleanup function to free reserved memory.
- * @param data 	Struct with metadata of the program.
+ * @param data 			Struct with metadata of the program.
+ * @param curr_index	Index of the thread whose creation failed.
  */
-void	ft_err_thread_create(t_meta *data)
+void	ft_err_thread_create(t_meta *data, int curr_index)
 {
 	printf("Thread creation encountered an error. System reset initialised.\n");
-	ft_stop_join_threads(data);
+	ft_stop_join_threads(data, curr_index);
 	ft_cleanup(data);
 	exit(ERR_THREAD_CREATE);
+}
+
+/**
+ * @brief Set the status of created philos to DEAD and joins them.
+ * 
+ * @param data 			Struct with metadata of the program.
+ * @param curr_index 	Index of the thread whose creation failed.
+ */
+void	ft_stop_join_threads(t_meta *data, int curr_index)
+{
+	while (--curr_index >= 0)
+	{
+		ft_set_status(&data->philos[curr_index], DEAD);
+		if (pthread_join(data->philos[curr_index].thread, NULL) != 0)
+			printf("Failed to join thread %d.\n", data->philos[curr_index].id);
+	}
 }

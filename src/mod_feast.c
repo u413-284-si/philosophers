@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 14:04:16 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/11 12:06:25 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/11 16:35:16 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	ft_let_em_live(t_meta *data)
 	{
 		if (pthread_create(data->philos[i].thread, NULL, ft_philo_routine, \
 			&data->philos[i]) != 0)
-			ft_err_thread_create(data);
+			ft_err_thread_create(data, i);
 		ft_declare(&data->philos[i], THINK, false);
 	}
 }
