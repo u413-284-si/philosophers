@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 21:15:01 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/10 23:34:50 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/11 10:47:49 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@
 # define DED "died"
 
 /* ====== DECLARATIONS ====== */
-void	ft_declare(t_philo *philo, t_meta *data, char *str, bool so_ded);
+void	ft_declare(t_philo *philo, char *str, bool so_ded);
 void	ft_set_status(t_philo *philo, t_status status);
 
 //import from mod_utils
-long	ft_get_time(t_meta *data);
+long	ft_get_time(void);
 
 #endif

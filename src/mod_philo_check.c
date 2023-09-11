@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 17:01:35 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/11 10:45:35 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/11 10:48:12 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ bool	ft_starved(t_philo *philo, t_meta *data)
 	if (ded)
 	{
 		ft_set_status(philo, DEAD);
-		ft_declare(philo, data, DED, true);
+		ft_declare(philo, DED, true);
 	}
 	return (ded);
 }
