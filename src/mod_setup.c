@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 15:28:21 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/11 10:40:52 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/11 17:41:01 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ int	ft_convert_str_to_num(char *str)
  */
 void	ft_init_var(t_meta *data, t_input *params)
 {
-	data->philos = ft_calloc(data->philos->params->num_philos, sizeof(t_philo));
+	data->philos = (t_philo *)ft_calloc(data->philos->params->num_philos, \
+		sizeof(t_philo));
 	if (!data->philos)
 		ft_err_malloc(data);
 	ft_init_values(data, params);
