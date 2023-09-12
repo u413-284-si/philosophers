@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 15:28:21 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/11 17:41:01 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/12 10:40:24 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	ft_convert_str_to_num(char *str)
  */
 void	ft_init_var(t_meta *data, t_input *params)
 {
-	data->philos = (t_philo *)ft_calloc(data->philos->params->num_philos, \
+	data->philos = (t_philo *)ft_calloc(params->num_philos, \
 		sizeof(t_philo));
 	if (!data->philos)
 		ft_err_malloc(data);
@@ -102,10 +102,10 @@ void	ft_init_values(t_meta *data, t_input *params)
 
 	data->speak = true;
 	i = -1;
-	while (++i < data->philos->params->num_philos)
+	while (++i < params->num_philos)
 	{
 		data->philos[i].id = i + 1;
-		if (i == data->philos->params->num_philos - 1)
+		if (i == params->num_philos - 1)
 			data->philos[i].right_fork = &data->philos[0].left_fork;
 		else
 			data->philos[i].right_fork = &data->philos[i + 1].left_fork;
