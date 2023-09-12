@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 12:47:34 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/11 17:21:23 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/12 12:14:03 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,11 @@ int	ft_mangiare(t_philo *philo)
 int	ft_dormire(t_philo *philo)
 {
 	if (ft_starved(philo) || ft_get_status(philo) == DEAD)
+	{
+		ft_drop_fork(philo->right_fork);
+		ft_drop_fork(&philo->left_fork);
 		return (-1);
+	}
 	if (philo->id != philo->params->num_philos)
 	{
 		ft_drop_fork(philo->right_fork);
