@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 17:01:35 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/11 17:00:15 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/12 10:50:28 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,27 +27,27 @@
  */
 void	ft_manage_philos(t_meta *data)
 {
-	bool	abort;
+	bool	run;
 	int		i;
 
 	if (data->philos->params->num_philos == 1)
 		return ;
-	abort = false;
-	while (!abort)
+	run = true;
+	while (run)
 	{
 		i = -1;
 		while (++i < data->philos->params->num_philos)
 		{
 			if (ft_starved(&data->philos[i]))
 			{
-				abort = true;
+				run = false;
 				break ;
 			}
 			if (data->philos->params->check_meals)
 				ft_is_fed(&data->philos[i]);
 		}
 		if (ft_all_fed(data->philos))
-			abort = true;
+			run = false;
 	}
 }
 
