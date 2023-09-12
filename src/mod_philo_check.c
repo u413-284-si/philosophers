@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 17:01:35 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/12 10:50:28 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/12 17:14:12 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,27 +27,35 @@
  */
 void	ft_manage_philos(t_meta *data)
 {
-	bool	run;
+	//bool	run;
 	int		i;
+	int		fed_count;
 
 	if (data->philos->params->num_philos == 1)
 		return ;
-	run = true;
-	while (run)
+	//run = true;
+	fed_count = 0;
+	while (!(ft_all_fed(data->philos) || ft_check_for_dead(data->philos)))
 	{
 		i = -1;
 		while (++i < data->philos->params->num_philos)
 		{
 			if (ft_starved(&data->philos[i]))
 			{
-				run = false;
+				//run = false;
 				break ;
 			}
-			if (data->philos->params->check_meals)
-				ft_is_fed(&data->philos[i]);
+			if (data->philos->params->check_meals && ft_is_fed(&data->philos[i]))
+				fed_count++;
 		}
-		if (ft_all_fed(data->philos))
-			run = false;
+/* 		if (ft_all_fed(data->philos))
+			run = false; */
+		pthread_mutex_lock(&data->mtx_speak);
+		if (data->speak)
+			printf("Fed count: %d\n\n", fed_count);
+		pthread_mutex_unlock(&data->mtx_speak);
+		if (fed_count == data->philos->params->req_meals)
+			break ;
 	}
 }
 
@@ -83,7 +91,7 @@ bool	ft_starved(t_philo *philo)
  * 
  * @param philo 	Philo in question.
  */
-void	ft_is_fed(t_philo *philo)
+bool	ft_is_fed(t_philo *philo)
 {
 	bool	fed;
 
@@ -92,8 +100,9 @@ void	ft_is_fed(t_philo *philo)
 	if (philo->meal_count >= philo->params->req_meals)
 		fed = true;
 	pthread_mutex_unlock(&philo->mtx_meal_count);
-	if (fed && ft_get_status(philo) != FULL)
+	if (fed && ft_get_status(philo) == ACTIVE)
 		ft_set_status(philo, FULL);
+	return (fed);
 }
 
 /**
