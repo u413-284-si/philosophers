@@ -5,11 +5,36 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"name": "Normal run",
+			"name": "Standard",
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/philo",
 			"args": ["4", "500", "200", "200"],
+			"stopAtEntry": true,
+			"cwd": "${fileDirname}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "gdb",
+			"setupCommands": [
+				{
+					"description": "Enable pretty-printing for gdb",
+					"text": "-enable-pretty-printing",
+					"ignoreFailures": true
+				},
+				{
+					"description": "Set Disassembly Flavor to Intel",
+					"text": "-gdb-set disassembly-flavor intel",
+					"ignoreFailures": true
+				}
+			],
+			"preLaunchTask": "make"
+		},
+		{
+			"name": "Standard with end condition",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/philo",
+			"args": ["4", "500", "200", "200", "3"],
 			"stopAtEntry": true,
 			"cwd": "${fileDirname}",
 			"environment": [],
