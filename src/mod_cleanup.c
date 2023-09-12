@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 19:33:37 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/11 17:05:46 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/12 12:17:35 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,23 @@
  */
 void	ft_cleanup(t_meta *data)
 {
-	if (pthread_mutex_destroy(&data->mtx_speak) != 0)
+	int	err;
+
+	err = pthread_mutex_destroy(&data->mtx_speak);
+	if (err != 0)
+	{
+		printf("Errorcode: %d\n", err);
 		ft_print_err_and_exit(ERR_MUTEX_DESTROY, \
 		"Failed to destroy mtx_speak. 😵‍💫\n");
+	}
 	if (data->philos)
 	{
 		ft_destroy_philo_mutexes(data->philos, \
 			data->philos->params->num_philos);
 		free(data->philos);
 	}
-	printf("System cleanup successful. \
-		Can leave now with a peaceful mind. 🙏\n");
+	printf("\nSystem cleanup successful. ");
+	printf("Can leave now with a peaceful mind. 🙏\n\n");
 }
 
 /**
