@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 17:01:35 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/12 17:14:12 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/13 23:33:09 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
  * @brief Functions to check the state of the philosophers.
  */
 
-#include "mod_philo_check.h"
+#include "mod_philo.h"
 
 /**
  * @brief Driver function for constant surveillance until a breaking condition
@@ -27,36 +27,19 @@
  */
 void	ft_manage_philos(t_meta *data)
 {
-	//bool	run;
-	int		i;
-	int		fed_count;
+	bool	dead;
+	bool	fed;
 
 	if (data->philos->params->num_philos == 1)
 		return ;
-	//run = true;
-	fed_count = 0;
-	while (!(ft_all_fed(data->philos) || ft_check_for_dead(data->philos)))
-	{
-		i = -1;
-		while (++i < data->philos->params->num_philos)
-		{
-			if (ft_starved(&data->philos[i]))
-			{
-				//run = false;
-				break ;
-			}
-			if (data->philos->params->check_meals && ft_is_fed(&data->philos[i]))
-				fed_count++;
-		}
-/* 		if (ft_all_fed(data->philos))
-			run = false; */
-		pthread_mutex_lock(&data->mtx_speak);
-		if (data->speak)
-			printf("Fed count: %d\n\n", fed_count);
-		pthread_mutex_unlock(&data->mtx_speak);
-		if (fed_count == data->philos->params->req_meals)
-			break ;
-	}
+	dead = false;
+	fed = false;
+	while (!(dead || fed))
+		ft_check_philo_status(data, &dead, &fed);
+	if (dead)
+		ft_set_all(data->philos, DEAD);
+	if (fed)
+		ft_set_all(data->philos, FULL);
 }
 
 /**
