@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 12:47:34 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/12 12:14:03 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/13 20:15:56 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
  * @brief Functions describing the philosophers routine.
  */
 
-#include "mod_philo_routine.h"
+#include "mod_philo.h"
 
 /**
  * @brief Defines behaviour of a philo thread.
@@ -67,6 +67,7 @@ void	*ft_so_lonely(t_philo *philo)
 /**
  * @brief Eating process of a philo.
  * 
+ * Check if philo has starved/is dead or is full. If yes, abort. 
  * All philos except the last first try to pick up the left fork
  * then the right. The last one does it the other way round to
  * avoid a dead lock.
@@ -80,7 +81,7 @@ void	*ft_so_lonely(t_philo *philo)
  */
 int	ft_mangiare(t_philo *philo)
 {
-	if (ft_starved(philo) || ft_get_status(philo) == DEAD)
+	if (ft_starved(philo) || ft_get_status(philo) >= FULL)
 		return (-1);
 	if (philo->id != philo->params->num_philos)
 	{
@@ -110,14 +111,14 @@ int	ft_mangiare(t_philo *philo)
  * A message is printed and the thread sleeps for the 
  * appointed time to sleep.
  * If the initial parameters result in a philo dying just after eating
- * or the status of the philo is set externally to DEAD,
+ * or the status of the philo is set externally to DEAD or he is full,
  * the process is cancelled.
  * @param philo 	Philo in question.
  * @return int 		0 on success, -1 on death of philo.
  */
 int	ft_dormire(t_philo *philo)
 {
-	if (ft_starved(philo) || ft_get_status(philo) == DEAD)
+	if (ft_starved(philo) || ft_get_status(philo) >= FULL)
 	{
 		ft_drop_fork(philo->right_fork);
 		ft_drop_fork(&philo->left_fork);
@@ -142,14 +143,14 @@ int	ft_dormire(t_philo *philo)
  * @brief Think process of a philo.
  * 
  * If the initial parameters result in a philo dying just after sleeping
- * or the status of the philo is set externally to DEAD,
+ * or the status of the philo is set externally to DEAD or he is full,
  * the process is cancelled.
  * @param philo 	Philo in question.
  * @return int 		0 on success, -1 on death of philo.
  */
 int	ft_pensare(t_philo *philo)
 {
-	if (ft_starved(philo) || ft_get_status(philo) == DEAD)
+	if (ft_starved(philo) || ft_get_status(philo) >= FULL)
 		return (-1);
 	ft_declare(philo, THINK, false);
 	return (0);
