@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 13:47:16 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/11 15:15:17 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/13 20:21:38 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 # define MOD_FORKS_H
 
 /* ====== LIBRARIES ====== */
-
-# include "mod_err_handling.h"
-# include "mod_philo_utils.h"
+# include "mod_philo.h"
 
 /* ====== DECLARATIONS ====== */
 

@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 14:04:26 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/11 17:18:10 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/13 20:21:21 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 # define MOD_FEAST_H
 
 /* ====== LIBRARIES ====== */
-
-# include "mod_err_handling.h"
-# include "mod_philo_utils.h"
+# include "mod_philo.h"
 
 /* ====== DECLARATIONS ====== */
 void	ft_start_shot(t_philo *philos);
