@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 13:47:06 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/14 20:21:30 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/14 21:51:16 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 int	ft_take_fork(t_philo *philo, t_fork *fork)
 {
 	pthread_mutex_lock(&fork->mtx_taken);
-	if (ft_starved(philo) || ft_get_status(philo) >= FULL)
+	if (ft_get_status(philo) >= FULL)
 	{
 		pthread_mutex_unlock(&fork->mtx_taken);
 		return (-1);
@@ -43,12 +43,14 @@ int	ft_take_fork(t_philo *philo, t_fork *fork)
 /**
  * @brief Drop fork.
  * 
- * @param fork 	Fork in question.
+ * @param philo 	Philo in question.
  */
-void	ft_drop_fork(t_fork *fork)
+void	ft_drop_forks(t_philo *philo)
 {
-	fork->taken = false;
-	pthread_mutex_unlock(&fork->mtx_taken);
+	philo->left_fork.taken = false;
+	pthread_mutex_unlock(&philo->left_fork.mtx_taken);
+	philo->right_fork->taken = false;
+	pthread_mutex_unlock(&philo->right_fork->mtx_taken);
 }
 
 /**
@@ -61,8 +63,8 @@ void	ft_drop_fork(t_fork *fork)
  */
 int	ft_left_right_routine(t_philo *philo)
 {
-/* 	pthread_mutex_lock(&philo->left_fork.mtx_taken);
-	if (ft_starved(philo) || ft_get_status(philo) >= FULL)
+	pthread_mutex_lock(&philo->left_fork.mtx_taken);
+	if (ft_get_status(philo) >= FULL)
 	{
 		pthread_mutex_unlock(&philo->left_fork.mtx_taken);
 		return (-1);
@@ -70,7 +72,7 @@ int	ft_left_right_routine(t_philo *philo)
 	philo->left_fork.taken = true;
 	ft_declare(philo, FORK, false);
 	pthread_mutex_lock(&philo->right_fork->mtx_taken);
-	if (ft_starved(philo) || ft_get_status(philo) >= FULL)
+	if (ft_get_status(philo) >= FULL)
 	{
 		philo->left_fork.taken = false;
 		pthread_mutex_unlock(&philo->left_fork.mtx_taken);
@@ -78,14 +80,7 @@ int	ft_left_right_routine(t_philo *philo)
 		return (-1);
 	}
 	philo->right_fork->taken = true;
-	ft_declare(philo, FORK, false); */
-	if (ft_take_fork(philo, &philo->left_fork) == -1)
-		return (-1);
-	if (ft_take_fork(philo, philo->right_fork) == -1)
-	{
-		ft_drop_fork(&philo->left_fork);
-		return (-1);
-	}
+	ft_declare(philo, FORK, false);
 	return (0);
 }
 
@@ -99,12 +94,23 @@ int	ft_left_right_routine(t_philo *philo)
  */
 int	ft_right_left_routine(t_philo *philo)
 {
-	if (ft_take_fork(philo, philo->right_fork) == -1)
-		return (-1);
-	if (ft_take_fork(philo, &philo->left_fork) == -1)
+	pthread_mutex_lock(&philo->right_fork->mtx_taken);
+	if (ft_get_status(philo) >= FULL)
 	{
-		ft_drop_fork(philo->right_fork);
+		pthread_mutex_unlock(&philo->right_fork->mtx_taken);
 		return (-1);
 	}
+	philo->right_fork->taken = true;
+	ft_declare(philo, FORK, false);
+	pthread_mutex_lock(&philo->left_fork.mtx_taken);
+	if (ft_get_status(philo) >= FULL)
+	{
+		philo->right_fork->taken = false;
+		pthread_mutex_unlock(&philo->right_fork->mtx_taken);
+		pthread_mutex_unlock(&philo->left_fork.mtx_taken);
+		return (-1);
+	}
+	philo->left_fork.taken = true;
+	ft_declare(philo, FORK, false);
 	return (0);
 }

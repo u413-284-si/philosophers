@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 12:47:34 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/14 20:25:40 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/14 21:44:11 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ void	*ft_so_lonely(t_philo *philo)
 	ft_rest(philo->params->time_to_die + 1);
 	while (!ft_starved(philo))
 		ft_rest(1);
-	ft_drop_fork(&philo->left_fork);
+	philo->left_fork.taken = false;
+	pthread_mutex_unlock(&philo->left_fork.mtx_taken);
 	return (NULL);
 }
 
@@ -81,7 +82,7 @@ void	*ft_so_lonely(t_philo *philo)
  */
 int	ft_mangiare(t_philo *philo)
 {
-	if (ft_starved(philo) || ft_get_status(philo) >= FULL)
+	if (ft_get_status(philo) >= FULL)
 		return (-1);
 	if (philo->id != philo->params->num_philos)
 	{
@@ -94,14 +95,13 @@ int	ft_mangiare(t_philo *philo)
 	ft_set_meal_stats(philo);
 	ft_declare(philo, EAT, false);
 	ft_rest(philo->params->time_to_eat);
+	ft_drop_forks(philo);
 	return (0);
 }
 
 /**
  * @brief Sleep process of a philo.
  * 
- * After eating the philo drops its forks in the inverse order
- * it picked them up -> e.g. left, right, right, left.
  * A message is printed and the thread sleeps for the 
  * appointed time to sleep.
  * If the initial parameters result in a philo dying just after eating
@@ -112,22 +112,8 @@ int	ft_mangiare(t_philo *philo)
  */
 int	ft_dormire(t_philo *philo)
 {
-	if (ft_starved(philo) || ft_get_status(philo) >= FULL)
-	{
-		ft_drop_fork(philo->right_fork);
-		ft_drop_fork(&philo->left_fork);
+	if (ft_get_status(philo) >= FULL)
 		return (-1);
-	}
-	if (philo->id != philo->params->num_philos)
-	{
-		ft_drop_fork(philo->right_fork);
-		ft_drop_fork(&philo->left_fork);
-	}
-	else
-	{
-		ft_drop_fork(&philo->left_fork);
-		ft_drop_fork(philo->right_fork);
-	}
 	ft_declare(philo, SLEEP, false);
 	ft_rest(philo->params->time_to_sleep);
 	return (0);
@@ -144,7 +130,7 @@ int	ft_dormire(t_philo *philo)
  */
 int	ft_pensare(t_philo *philo)
 {
-	if (ft_starved(philo) || ft_get_status(philo) >= FULL)
+	if (ft_get_status(philo) >= FULL)
 		return (-1);
 	ft_declare(philo, THINK, false);
 	return (0);
