@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 12:47:34 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/13 20:15:56 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/14 20:25:40 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,18 +85,12 @@ int	ft_mangiare(t_philo *philo)
 		return (-1);
 	if (philo->id != philo->params->num_philos)
 	{
-		if (ft_take_fork(philo, &philo->left_fork) == -1)
-			return (-1);
-		if (ft_take_fork(philo, philo->right_fork) == -1)
+		if (ft_left_right_routine(philo) == -1)
 			return (-1);
 	}
 	else
-	{
-		if (ft_take_fork(philo, philo->right_fork) == -1)
+		if (ft_right_left_routine(philo) == -1)
 			return (-1);
-		if (ft_take_fork(philo, &philo->left_fork) == -1)
-			return (-1);
-	}
 	ft_set_meal_stats(philo);
 	ft_declare(philo, EAT, false);
 	ft_rest(philo->params->time_to_eat);

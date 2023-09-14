@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 17:01:51 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/13 23:32:12 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/14 19:55:58 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void		ft_set_meal_stats(t_philo *philo);
 // import from mod_forks
 int			ft_take_fork(t_philo *philo, t_fork *fork);
 void		ft_drop_fork(t_fork *fork);
+int			ft_left_right_routine(t_philo *philo);
+int			ft_right_left_routine(t_philo *philo);
 
 //import from mod_utils.h
 long		ft_get_time(void);

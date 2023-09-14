@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 13:47:06 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/13 18:59:24 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/14 20:21:30 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
  * Otherwise the bool is set and a message printed.
  * @param philo 	Philo trying to pick up the fork.
  * @param fork 		Fork in question.
- * @return int 		0 on success, -1 on death of philo.
+ * @return int 		0 on success, -1 on death/satiation of philo.
  */
 int	ft_take_fork(t_philo *philo, t_fork *fork)
 {
@@ -49,4 +49,62 @@ void	ft_drop_fork(t_fork *fork)
 {
 	fork->taken = false;
 	pthread_mutex_unlock(&fork->mtx_taken);
+}
+
+/**
+ * @brief Take first the left fork, then the right one.
+ * 
+ * If picking up the right fork fails, the left one is
+ * released.
+ * @param philo 	Philo trying to pick up the forks.
+ * @return int 		0 on success, -1 on death/satiation of philo.
+ */
+int	ft_left_right_routine(t_philo *philo)
+{
+/* 	pthread_mutex_lock(&philo->left_fork.mtx_taken);
+	if (ft_starved(philo) || ft_get_status(philo) >= FULL)
+	{
+		pthread_mutex_unlock(&philo->left_fork.mtx_taken);
+		return (-1);
+	}
+	philo->left_fork.taken = true;
+	ft_declare(philo, FORK, false);
+	pthread_mutex_lock(&philo->right_fork->mtx_taken);
+	if (ft_starved(philo) || ft_get_status(philo) >= FULL)
+	{
+		philo->left_fork.taken = false;
+		pthread_mutex_unlock(&philo->left_fork.mtx_taken);
+		pthread_mutex_unlock(&philo->right_fork->mtx_taken);
+		return (-1);
+	}
+	philo->right_fork->taken = true;
+	ft_declare(philo, FORK, false); */
+	if (ft_take_fork(philo, &philo->left_fork) == -1)
+		return (-1);
+	if (ft_take_fork(philo, philo->right_fork) == -1)
+	{
+		ft_drop_fork(&philo->left_fork);
+		return (-1);
+	}
+	return (0);
+}
+
+/**
+ * @brief Take first the right fork, then the left one.
+ * 
+ * If picking up the left fork fails, the right one is
+ * released.
+ * @param philo 	Philo trying to pick up the forks.
+ * @return int 		0 on success, -1 on death/satiation of philo.
+ */
+int	ft_right_left_routine(t_philo *philo)
+{
+	if (ft_take_fork(philo, philo->right_fork) == -1)
+		return (-1);
+	if (ft_take_fork(philo, &philo->left_fork) == -1)
+	{
+		ft_drop_fork(philo->right_fork);
+		return (-1);
+	}
+	return (0);
 }
