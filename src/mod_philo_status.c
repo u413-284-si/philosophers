@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 20:13:27 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/13 23:35:40 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/14 17:45:44 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,7 @@ void	ft_set_all(t_philo *philos, t_status status)
 void	ft_check_philo_status(t_meta *data, bool *dead, bool *fed)
 {
 	int		i;
-	int		fed_count;
 
-	fed_count = 0;
 	i = -1;
 	while (++i < data->philos->params->num_philos)
 	{
@@ -89,9 +87,9 @@ void	ft_check_philo_status(t_meta *data, bool *dead, bool *fed)
 			*dead = true;
 			break ;
 		}
-		if (data->philos->params->check_meals && ft_is_fed(&data->philos[i]))
-			fed_count++;
+		if (data->philos->params->check_meals)
+			ft_is_fed(&data->philos[i]);
 	}
-	if (fed_count == data->philos->params->req_meals)
+	if (ft_all_fed(data->philos))
 		*fed = true;
 }
