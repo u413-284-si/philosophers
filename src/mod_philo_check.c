@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 17:01:35 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/13 23:33:09 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/14 18:58:54 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ void	ft_manage_philos(t_meta *data)
 		ft_check_philo_status(data, &dead, &fed);
 	if (dead)
 		ft_set_all(data->philos, DEAD);
-	if (fed)
-		ft_set_all(data->philos, FULL);
 }
 
 /**
