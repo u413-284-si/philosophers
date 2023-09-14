@@ -6,7 +6,7 @@
 #    By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/28 13:03:05 by gwolf             #+#    #+#              #
-#    Updated: 2023/09/13 20:22:54 by sqiu             ###   ########.fr        #
+#    Updated: 2023/09/14 18:39:01 by sqiu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ LDLIBS :=
 
 CC := cc
 CPPFLAGS := -I $(INC_DIR)
-CFLAGS = -Wall -Werror -Wextra -g -pthread
+CFLAGS = -Wall -Werror -Wextra -g -pthread -gdwarf-4
 DEPFLAGS = -MT $@ -MMD -MP -MF $(DEP_DIR)/$*.Td
 COMPILE = $(CC) $(DEPFLAGS) $(CPPFLAGS) $(CFLAGS) -c
 POSTCOMPILE = @mv -f $(DEP_DIR)/$*.Td $(DEP_DIR)/$*.d && touch $@
