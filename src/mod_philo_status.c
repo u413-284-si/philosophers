@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 20:13:27 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/14 17:45:44 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/14 20:32:37 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ void	ft_check_philo_status(t_meta *data, bool *dead, bool *fed)
 		if (data->philos->params->check_meals)
 			ft_is_fed(&data->philos[i]);
 	}
-	if (ft_all_fed(data->philos))
-		*fed = true;
+	if (data->philos->params->check_meals)
+		if (ft_all_fed(data->philos))
+			*fed = true;
 }
