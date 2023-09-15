@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 17:01:51 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/14 21:41:18 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/15 11:43:18 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ bool		ft_check_for_dead(t_philo *philos);
 
 // routines
 void		*ft_so_lonely(t_philo *philo);
-int			ft_mangiare(t_philo *philo);
+int			ft_vivere(t_philo *philo);
 int			ft_dormire(t_philo *philo);
 int			ft_pensare(t_philo *philo);
 

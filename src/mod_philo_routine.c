@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 12:47:34 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/14 21:44:11 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/15 11:46:06 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,8 @@ void	*ft_philo_routine(void *arg)
 	if (philo->params->num_philos == 1)
 		return (ft_so_lonely(philo));
 	while (true)
-	{
-		if (ft_mangiare(philo) == -1)
+		if (ft_vivere(philo) == -1)
 			break ;
-		if (ft_dormire(philo) == -1)
-			break ;
-		if (ft_pensare(philo) == -1)
-			break ;
-	}
 	return (NULL);
 }
 
@@ -66,21 +60,26 @@ void	*ft_so_lonely(t_philo *philo)
 }
 
 /**
- * @brief Eating process of a philo.
+ * @brief Life process of a philo.
  * 
- * Check if philo has starved/is dead or is full. If yes, abort. 
+ * Check if philo has starved/is dead or is full. If yes, abort.
+ * 
  * All philos except the last first try to pick up the left fork
  * then the right. The last one does it the other way round to
  * avoid a dead lock.
+ * 
  * While trying to pick up a fork the philo might starve in which
  * case the function is cancelled.
  * If both forks are successfully picked up, the last meal variable
  * is updated, a message printed and the thread rests for the 
  * appointed time necessary to eat.
+ * After eating the forks are dropped.
+ * The philo declares he is going to sleep and rests for the designated time.
+ * Afterwards he declares that he is thinking.
  * @param philo 	Philo in question.
  * @return int 		0 on success, -1 on death of philo.
  */
-int	ft_mangiare(t_philo *philo)
+int	ft_vivere(t_philo *philo)
 {
 	if (ft_get_status(philo) >= FULL)
 		return (-1);
@@ -92,46 +91,18 @@ int	ft_mangiare(t_philo *philo)
 	else
 		if (ft_right_left_routine(philo) == -1)
 			return (-1);
-	ft_set_meal_stats(philo);
+	pthread_mutex_lock(&philo->mtx_meal_stats);
+	philo->last_meal = ft_get_time();
+	philo->meal_count++;
+	pthread_mutex_unlock(&philo->mtx_meal_stats);
 	ft_declare(philo, EAT, false);
 	ft_rest(philo->params->time_to_eat);
-	ft_drop_forks(philo);
-	return (0);
-}
-
-/**
- * @brief Sleep process of a philo.
- * 
- * A message is printed and the thread sleeps for the 
- * appointed time to sleep.
- * If the initial parameters result in a philo dying just after eating
- * or the status of the philo is set externally to DEAD or he is full,
- * the process is cancelled.
- * @param philo 	Philo in question.
- * @return int 		0 on success, -1 on death of philo.
- */
-int	ft_dormire(t_philo *philo)
-{
-	if (ft_get_status(philo) >= FULL)
-		return (-1);
+	philo->left_fork.taken = false;
+	pthread_mutex_unlock(&philo->left_fork.mtx_taken);
+	philo->right_fork->taken = false;
+	pthread_mutex_unlock(&philo->right_fork->mtx_taken);
 	ft_declare(philo, SLEEP, false);
 	ft_rest(philo->params->time_to_sleep);
-	return (0);
-}
-
-/**
- * @brief Think process of a philo.
- * 
- * If the initial parameters result in a philo dying just after sleeping
- * or the status of the philo is set externally to DEAD or he is full,
- * the process is cancelled.
- * @param philo 	Philo in question.
- * @return int 		0 on success, -1 on death of philo.
- */
-int	ft_pensare(t_philo *philo)
-{
-	if (ft_get_status(philo) >= FULL)
-		return (-1);
 	ft_declare(philo, THINK, false);
 	return (0);
 }
