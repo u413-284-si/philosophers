@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 17:01:51 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/15 11:57:45 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/15 12:38:57 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,5 @@ int			ft_right_left_routine(t_philo *philo);
 
 //import from mod_utils.h
 long		ft_get_time(void);
-
 
 #endif

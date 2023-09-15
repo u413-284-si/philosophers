@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 19:33:37 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/15 11:37:29 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/15 12:38:33 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,3 @@ void	ft_destroy_philo_mutexes(t_philo *philos, int num_philos)
 			"Failed to destroy mtx_fork_taken. 😵‍💫\n");
 	}
 }
-
