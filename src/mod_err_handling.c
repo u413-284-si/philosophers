@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:29:56 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/11 17:19:52 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/15 12:54:08 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 /**
  * @brief Prints the provided error message and exits with the given error code.
  * 
- * If errno was set, perror is used to print out the error message and code.
  * Optionally prints out instruction on program usage in case of user errors.
  * @param err 			Given error code.
  * @param msg 			Given error message.

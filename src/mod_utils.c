@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 13:52:39 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/11 10:44:24 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/15 12:55:55 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,9 +105,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
  * @brief Retrieves current time stamp.
  * 
  * The timestamp is calculated into ms and returned.
- * On error errno is set and perror used to print
- * the error message. System cleanup is initiated.
- * Program is exited with errno.
+ * On error print the error message. System cleanup is initiated.
  * @return long 	Time stamp in ms.
  */
 long	ft_get_time(void)
@@ -118,7 +116,7 @@ long	ft_get_time(void)
 	errno = 0;
 	if (gettimeofday(&tv, NULL) == -1)
 	{
-		perror("Gettimeofday() failed.");
+		printf("Gettimeofday() failed.");
 		return (-1);
 	}
 	time = tv.tv_sec * 1000 + tv.tv_usec / 1000;
