@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 12:07:42 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/10 11:47:53 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/15 11:37:03 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,7 @@ void	ft_init_philo_mutexes(t_meta *data, t_philo *philos, int num_philos)
 	{
 		if (pthread_mutex_init(&philos[i].mtx_status, NULL) != 0)
 			ft_err_mutex_init(data);
-		if (pthread_mutex_init(&philos[i].mtx_meal_count, NULL) != 0)
-			ft_err_mutex_init(data);
-		if (pthread_mutex_init(&philos[i].mtx_last_meal, NULL) != 0)
+		if (pthread_mutex_init(&philos[i].mtx_meal_stats, NULL) != 0)
 			ft_err_mutex_init(data);
 		if (pthread_mutex_init(&philos[i].left_fork.mtx_taken, NULL) != 0)
 			ft_err_mutex_init(data);

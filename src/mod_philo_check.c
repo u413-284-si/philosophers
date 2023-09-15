@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 17:01:35 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/14 18:58:54 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/15 11:39:13 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ bool	ft_starved(t_philo *philo)
 	bool	ded;
 
 	ded = false;
-	pthread_mutex_lock(&philo->mtx_last_meal);
+	pthread_mutex_lock(&philo->mtx_meal_stats);
 	if (ft_get_time() - philo->last_meal > philo->params->time_to_die)
 		ded = true;
-	pthread_mutex_unlock(&philo->mtx_last_meal);
+	pthread_mutex_unlock(&philo->mtx_meal_stats);
 	if (ded)
 	{
 		ft_set_status(philo, DEAD);
@@ -77,11 +77,11 @@ bool	ft_is_fed(t_philo *philo)
 	bool	fed;
 
 	fed = false;
-	pthread_mutex_lock(&philo->mtx_meal_count);
+	pthread_mutex_lock(&philo->mtx_meal_stats);
 	if (philo->meal_count >= philo->params->req_meals)
 		fed = true;
-	pthread_mutex_unlock(&philo->mtx_meal_count);
-	if (fed && ft_get_status(philo) == ACTIVE)
+	pthread_mutex_unlock(&philo->mtx_meal_stats);
+	if (fed)
 		ft_set_status(philo, FULL);
 	return (fed);
 }

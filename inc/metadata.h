@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 15:34:01 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/11 10:27:50 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/15 11:36:39 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,8 @@ typedef struct s_philo
 	t_status		status;
 	pthread_mutex_t	mtx_status;
 	long			last_meal;
-	pthread_mutex_t	mtx_last_meal;
 	int				meal_count;
-	pthread_mutex_t	mtx_meal_count;
+	pthread_mutex_t	mtx_meal_stats;
 	t_input			*params;
 	bool			*speak;
 	pthread_mutex_t	*mtx_speak;
