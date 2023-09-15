@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 13:47:06 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/14 21:51:16 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/15 11:57:57 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,6 @@ int	ft_take_fork(t_philo *philo, t_fork *fork)
 	fork->taken = true;
 	ft_declare(philo, FORK, false);
 	return (0);
-}
-
-/**
- * @brief Drop fork.
- * 
- * @param philo 	Philo in question.
- */
-void	ft_drop_forks(t_philo *philo)
-{
-	philo->left_fork.taken = false;
-	pthread_mutex_unlock(&philo->left_fork.mtx_taken);
-	philo->right_fork->taken = false;
-	pthread_mutex_unlock(&philo->right_fork->mtx_taken);
 }
 
 /**
