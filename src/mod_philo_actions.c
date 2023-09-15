@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 21:14:40 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/14 21:30:54 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/15 11:47:32 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,26 +61,5 @@ void	ft_rest(long timespan_to_wait)
 	{
 		usleep(10);
 		elapsed = ft_get_time() - start;
-	}
-}
-
-/**
- * @brief Update meal stats of given philo.
- * 
- * Sets last meal to current timestamp.
- * If check_meals is true, increases meal_count
- * of philo.
- * @param philo 	Philo in question.
- */
-void	ft_set_meal_stats(t_philo *philo)
-{
-	pthread_mutex_lock(&philo->mtx_last_meal);
-	philo->last_meal = ft_get_time();
-	pthread_mutex_unlock(&philo->mtx_last_meal);
-	if (philo->params->check_meals)
-	{
-		pthread_mutex_lock(&philo->mtx_meal_count);
-		philo->meal_count++;
-		pthread_mutex_unlock(&philo->mtx_meal_count);
 	}
 }
