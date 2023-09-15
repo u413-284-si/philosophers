@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:29:56 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/15 16:52:46 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/15 17:57:47 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_err	ft_print_err(t_err err, char *msg)
  * @param data 	Struct with metadata of the program.
  * @return err	ERR_MALLOC
  */
-t_err	ft_err_malloc(t_meta *data)
+t_err	ft_err_malloc(void)
 {
 	printf("Malloc encountered an error. System reset initialised.\n");
 	return (ERR_MALLOC);
@@ -85,17 +85,19 @@ t_err	ft_err_thread_create(t_meta *data, int curr_index)
 }
 
 /**
- * @brief Set the status of created philos to DEAD and joins them.
+ * @brief Set the status of created philos to DEAD and afterwards join them.
  * 
  * @param data 			Struct with metadata of the program.
  * @param curr_index 	Index of the thread whose creation failed.
  */
 void	ft_stop_join_threads(t_meta *data, int curr_index)
 {
+	int	tmp;
+
+	tmp = curr_index;
+	while (--tmp >= 0)
+		ft_set_status(&data->philos[tmp], DEAD);
 	while (--curr_index >= 0)
-	{
-		ft_set_status(&data->philos[curr_index], DEAD);
 		if (pthread_join(data->philos[curr_index].thread, NULL) != 0)
 			printf("Failed to join thread %d.\n", data->philos[curr_index].id);
-	}
 }

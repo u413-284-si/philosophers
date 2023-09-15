@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 19:33:37 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/15 16:58:12 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/15 17:40:47 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@
  */
 t_err	ft_cleanup(t_meta *data)
 {
-	t_err	err;
-
 	if (pthread_mutex_destroy(&data->mtx_speak) != 0)
 		return (ft_print_err(ERR_MUTEX_DESTROY, \
 		"Failed to destroy mtx_speak. 😵‍💫\n"));

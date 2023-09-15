@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 15:28:21 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/15 17:25:38 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/15 17:42:34 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@
  * @param argv 		Array of strings containing the arguments.
  * @param params 	Struct to save and provide input parameters to the program.
  * @param data 		Struct with metadata of the program.
- * @return err		ERR_MALLOC, ERR_ZEROINPUT
+ * @return err		ERR_MALLOC, ERR_ZEROINPUT, ERR_OVERFLOW, ERR_NEGATIVINPUT,
+ * 					ERR_MUTEX_INIT, SUCCESS
  */
 t_err	ft_setup(int argc, char **argv, t_input *params, t_meta *data)
 {
@@ -43,6 +44,25 @@ t_err	ft_setup(int argc, char **argv, t_input *params, t_meta *data)
 	err = ft_convert_str_to_num(argv[4], &params->time_to_sleep);
 	if (err != SUCCESS)
 		return (err);
+	err = ft_setup2(argc, argv, params, data);
+	return (err);
+}
+
+/**
+ * @brief Continuation of setup.
+ * 
+ * @param argc 		Amout of input arguments.
+ * @param argv 		Array of strings containing the arguments.
+ * @param params 	Struct to save and provide input parameters to the program.
+ * @param data 		Struct with metadata of the program.
+ * @return err		ERR_MALLOC, ERR_ZEROINPUT, ERR_OVERFLOW, ERR_NEGATIVINPUT,
+ * 					ERR_MUTEX_INIT, SUCCESS
+ */
+t_err	ft_setup2(int argc, char **argv, t_input *params, t_meta *data)
+{
+	t_err	err;
+
+	err = SUCCESS;
 	if (argc == 6)
 	{
 		err = ft_convert_str_to_num(argv[5], &params->req_meals);
@@ -63,6 +83,7 @@ t_err	ft_setup(int argc, char **argv, t_input *params, t_meta *data)
 		return (ERR_MALLOC);
 	if (ft_init_mutexes(data) != SUCCESS)
 		return (ERR_MUTEX_INIT);
+	return (SUCCESS);
 }
 
 /**
@@ -101,7 +122,7 @@ t_err	ft_init_var(t_meta *data, t_input *params)
 	data->philos = (t_philo *)ft_calloc(params->num_philos, \
 		sizeof(t_philo));
 	if (!data->philos)
-		return (ft_err_malloc(data));
+		return (ft_err_malloc());
 	ft_init_values(data, params);
 	return (SUCCESS);
 }

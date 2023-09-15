@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 14:04:26 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/13 20:21:21 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/15 18:00:33 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 /* ====== DECLARATIONS ====== */
 void	ft_start_shot(t_philo *philos);
-void	ft_let_em_live(t_meta *data);
+t_err	ft_let_em_live(t_meta *data);
 void	ft_bring_em_home(t_meta *data);
 
 // import from mod_philo_check
