@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:30:29 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/11 16:40:19 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/15 16:42:33 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,16 @@ typedef enum e_err{
 
 /* ====== DECLARATIONS ====== */
 
-void	ft_print_err_and_exit(t_err err, char *msg);
-void	ft_err_malloc(t_meta *data);
-void	ft_err_mutex_init(t_meta *data);
-void	ft_err_thread_create(t_meta *data, int curr_index);
+t_err	ft_print_err(t_err err, char *msg);
+t_err	ft_err_malloc(t_meta *data);
+t_err	ft_err_mutex_init(t_meta *data);
+t_err	ft_err_thread_create(t_meta *data, int curr_index);
 void	ft_stop_join_threads(t_meta *data, int curr_index);
 
 // import from mod_philo_utils
 void	ft_set_status(t_philo *philo, t_status status);
 
 //import from mod_cleanup
-void	ft_cleanup(t_meta *data);
+t_err	ft_cleanup(t_meta *data);
 
 #endif

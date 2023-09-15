@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:07:16 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/09 12:14:04 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/15 17:15:52 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,19 @@
  * Check for number of arguments/parameters.
  * Check for empty strings.
  * Check for characters other than numeric values.
- * @param argc 	Amout of input arguments.
- * @param argv 	Array of strings containing the arguments.
+ * @param argc 		Amout of input arguments.
+ * @param argv 		Array of strings containing the arguments.
+ * @return t_err	ERR_ARGCOUNT, ERR_EMPTYSTR, ERR_NONNUMERIC, SUCCESS
  */
-void	ft_check_input(int argc, char **argv)
+t_err	ft_check_input(int argc, char **argv)
 {
-	ft_check_argc(argc);
-	ft_check_empty_str(argc, argv);
-	ft_check_num(argc, argv);
+	if (ft_check_argc(argc) == ERR_ARGCOUNT)
+		return (ERR_ARGCOUNT);
+	if (ft_check_empty_str(argc, argv) == ERR_EMPTYSTR)
+		return (ERR_EMPTYSTR);
+	if (ft_check_num(argc, argv) == ERR_NONNUMERIC)
+		return (ERR_NONNUMERIC);
+	return (SUCCESS);
 }
 
 /**
@@ -40,13 +45,15 @@ void	ft_check_input(int argc, char **argv)
  * 5: number_of_philosophers, time_to_die, time_to_eat,
  * time_to_sleep
  * 6: above + optionally number_of_times_each_philosopher_must_eat
- * @param argc 	Amout of input arguments.
+ * @param argc 		Amout of input arguments.
+ * @return t_err	ERR_ARGCOUNT, SUCCESS
  */
-void	ft_check_argc(int argc)
+t_err	ft_check_argc(int argc)
 {
 	if (argc != 5 && argc != 6)
-		ft_print_err_and_exit(ERR_ARGCOUNT, \
-		"Expect 4, optionally 5 arguments. 🙄\n");
+		return (ft_print_err(ERR_ARGCOUNT, \
+		"Expect 4, optionally 5 arguments. 🙄\n"));
+	return (SUCCESS);
 }
 
 /**
@@ -58,16 +65,18 @@ void	ft_check_argc(int argc)
  * according error value.
  * @param argc 	Amout of input arguments.
  * @param argv 	Array of strings containing the arguments.
+ * @return t_err	ERR_EMPTYSTR, SUCCESS
  */
-void	ft_check_empty_str(int argc, char **argv)
+t_err	ft_check_empty_str(int argc, char **argv)
 {
 	int	i;
 
 	i = 0;
 	while (++i < argc)
 		if (argv[i][0] == '\0')
-			ft_print_err_and_exit(ERR_EMPTYSTR, \
-				"Empty string encountered. 🥴\n");
+			return (ft_print_err(ERR_EMPTYSTR, \
+				"Empty string encountered. 🥴\n"));
+	return (SUCCESS);
 }
 
 /**
@@ -78,9 +87,10 @@ void	ft_check_empty_str(int argc, char **argv)
  * If non-numeric char found, return err message and exit with
  * according error value. 
  * @param argc 
- * @param argv 
+ * @param argv
+ * @return t_err	ERR_NONNUMERIC, SUCCESS
  */
-void	ft_check_num(int argc, char **argv)
+t_err	ft_check_num(int argc, char **argv)
 {
 	int	i;
 	int	j;
@@ -91,7 +101,8 @@ void	ft_check_num(int argc, char **argv)
 		j = -1;
 		while (argv[i][++j])
 			if (!ft_isdigit(argv[i][j]))
-				ft_print_err_and_exit(ERR_NONNUMERIC, \
-				"Input contains non-numeric characters. 👽\n");
+				return (ft_print_err(ERR_NONNUMERIC, \
+				"Input contains non-numeric characters. 👽\n"));
 	}
+	return (SUCCESS);
 }

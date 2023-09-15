@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 19:33:37 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/15 12:38:33 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/15 16:58:12 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,27 +21,26 @@
  * @brief Cleans up program if cancelled or finished.
  * 
  * Frees malloced space for philos and forks.
- * @param data 
+ * @param data		Struct with metadata of the program.
+ * @return err
  */
-void	ft_cleanup(t_meta *data)
+t_err	ft_cleanup(t_meta *data)
 {
-	int	err;
+	t_err	err;
 
-	err = pthread_mutex_destroy(&data->mtx_speak);
-	if (err != 0)
-	{
-		printf("Errorcode: %d\n", err);
-		ft_print_err_and_exit(ERR_MUTEX_DESTROY, \
-		"Failed to destroy mtx_speak. 😵‍💫\n");
-	}
+	if (pthread_mutex_destroy(&data->mtx_speak) != 0)
+		return (ft_print_err(ERR_MUTEX_DESTROY, \
+		"Failed to destroy mtx_speak. 😵‍💫\n"));
 	if (data->philos)
 	{
-		ft_destroy_philo_mutexes(data->philos, \
-			data->philos->params->num_philos);
+		if (ft_destroy_philo_mutexes(data->philos, \
+			data->philos->params->num_philos) == ERR_MUTEX_DESTROY)
+			return (ERR_MUTEX_DESTROY);
 		free(data->philos);
 	}
 	printf("\nSystem cleanup successful. ");
 	printf("Can leave now with a peaceful mind. 🙏\n\n");
+	return (SUCCESS);
 }
 
 /**
@@ -49,8 +48,9 @@ void	ft_cleanup(t_meta *data)
  * 
  * @param philos 		Array of philo structs.
  * @param num_philos 	Amount of philos.
+ * @return err			ERR_MUTEX_DESTROY, SUCCESS
  */
-void	ft_destroy_philo_mutexes(t_philo *philos, int num_philos)
+t_err	ft_destroy_philo_mutexes(t_philo *philos, int num_philos)
 {
 	int	i;
 
@@ -58,13 +58,14 @@ void	ft_destroy_philo_mutexes(t_philo *philos, int num_philos)
 	while (++i < num_philos)
 	{
 		if (pthread_mutex_destroy(&philos[i].mtx_status) != 0)
-			ft_print_err_and_exit(ERR_MUTEX_DESTROY, \
-			"Failed to destroy mtx_status. 😵‍💫\n");
+			return (ft_print_err(ERR_MUTEX_DESTROY, \
+			"Failed to destroy mtx_status. 😵‍💫\n"));
 		if (pthread_mutex_destroy(&philos[i].mtx_meal_stats) != 0)
-			ft_print_err_and_exit(ERR_MUTEX_DESTROY, \
-			"Failed to destroy mtx_meal_stats. 😵‍💫\n");
+			return (ft_print_err(ERR_MUTEX_DESTROY, \
+			"Failed to destroy mtx_meal_stats. 😵‍💫\n"));
 		if (pthread_mutex_destroy(&philos[i].left_fork.mtx_taken) != 0)
-			ft_print_err_and_exit(ERR_MUTEX_DESTROY, \
-			"Failed to destroy mtx_fork_taken. 😵‍💫\n");
+			return (ft_print_err(ERR_MUTEX_DESTROY, \
+			"Failed to destroy mtx_fork_taken. 😵‍💫\n"));
 	}
+	return (SUCCESS);
 }

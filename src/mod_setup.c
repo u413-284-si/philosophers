@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 15:28:21 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/12 10:40:24 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/15 17:25:38 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,46 +25,67 @@
  * @param argv 		Array of strings containing the arguments.
  * @param params 	Struct to save and provide input parameters to the program.
  * @param data 		Struct with metadata of the program.
+ * @return err		ERR_MALLOC, ERR_ZEROINPUT
  */
-void	ft_setup(int argc, char **argv, t_input *params, t_meta *data)
+t_err	ft_setup(int argc, char **argv, t_input *params, t_meta *data)
 {
-	params->num_philos = ft_convert_str_to_num(argv[1]);
-	params->time_to_die = ft_convert_str_to_num(argv[2]);
-	params->time_to_eat = ft_convert_str_to_num(argv[3]);
-	params->time_to_sleep = ft_convert_str_to_num(argv[4]);
+	t_err	err;
+
+	err = ft_convert_str_to_num(argv[1], &params->num_philos);
+	if (err != SUCCESS)
+		return (err);
+	err = ft_convert_str_to_num(argv[2], &params->time_to_die);
+	if (err != SUCCESS)
+		return (err);
+	err = ft_convert_str_to_num(argv[3], &params->time_to_eat);
+	if (err != SUCCESS)
+		return (err);
+	err = ft_convert_str_to_num(argv[4], &params->time_to_sleep);
+	if (err != SUCCESS)
+		return (err);
 	if (argc == 6)
 	{
-		params->req_meals = ft_convert_str_to_num(argv[5]);
+		err = ft_convert_str_to_num(argv[5], &params->req_meals);
+		if (err != SUCCESS)
+			return (err);
 		params->check_meals = true;
 	}
 	else
+	{
+		params->req_meals = -1;
 		params->check_meals = false;
-	if (params->num_philos == 0 || params->time_to_die == 0)
-		ft_print_err_and_exit(ERR_ZEROINPUT, \
-		"Number of philosophers and time_to_die cannot be 0. 😘 \n");
-	ft_init_var(data, params);
-	ft_init_mutexes(data);
+	}
+	if (params->num_philos == 0 || params->time_to_die == 0
+		|| params->req_meals == 0)
+		return (ft_print_err(ERR_ZEROINPUT, \
+		"Number of philos, time_to_die or number of eats cannot be 0. 😘\n"));
+	if (ft_init_var(data, params) != SUCCESS)
+		return (ERR_MALLOC);
+	if (ft_init_mutexes(data) != SUCCESS)
+		return (ERR_MUTEX_INIT);
 }
 
 /**
  * @brief Converts input string into numerical value and performs further checks
  * on this basis.
  * 
- * @param str 	Given string.
- * @return int 	Numerical value to be returned.
+ * @param str 		Given string.
+ * @param num	 	Numerical value to be set.
+ * @return t_err	ERR_OVERFLOW, ERR_NEGATIVINPUT, SUCCESS
  */
-int	ft_convert_str_to_num(char *str)
+t_err	ft_convert_str_to_num(char *str, int *num)
 {
 	long	buf;
 
 	buf = ft_atoi(str);
 	if (buf < -2147483648 || buf > 2147483647)
-		ft_print_err_and_exit(ERR_OVERFLOW, \
-		"Input value larger than int. 😩\n");
+		return (ft_print_err(ERR_OVERFLOW, \
+		"Input value larger than int. 😩\n"));
 	if (buf < 0)
-		ft_print_err_and_exit(ERR_NEGATIVINPUT, \
-		"No negative values accepted. 💀\n");
-	return ((int)buf);
+		return (ft_print_err(ERR_NEGATIVINPUT, \
+		"No negative values accepted. 💀\n"));
+	*num = (int)buf;
+	return (SUCCESS);
 }
 
 /**
@@ -73,14 +94,16 @@ int	ft_convert_str_to_num(char *str)
  * 
  * @param data 			Struct with metadata of the program.
  * @param params 		Struct to save and provide input parameters to the program.
+ * @return err			ERR_MALLOC, SUCCESS
  */
-void	ft_init_var(t_meta *data, t_input *params)
+t_err	ft_init_var(t_meta *data, t_input *params)
 {
 	data->philos = (t_philo *)ft_calloc(params->num_philos, \
 		sizeof(t_philo));
 	if (!data->philos)
-		ft_err_malloc(data);
+		return (ft_err_malloc(data));
 	ft_init_values(data, params);
+	return (SUCCESS);
 }
 
 /**

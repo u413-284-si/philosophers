@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:29:56 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/15 12:54:08 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/15 16:52:46 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,14 @@
 #include "mod_err_handling.h"
 
 /**
- * @brief Prints the provided error message and exits with the given error code.
+ * @brief Prints the provided error message.
  * 
  * Optionally prints out instruction on program usage in case of user errors.
  * @param err 			Given error code.
  * @param msg 			Given error message.
+ * @return err
  */
-void	ft_print_err_and_exit(t_err err, char *msg)
+t_err	ft_print_err(t_err err, char *msg)
 {
 	printf("%s\n", msg);
 	if (err == ERR_ARGCOUNT || err == ERR_EMPTYSTR || err == ERR_NONNUMERIC
@@ -34,7 +35,7 @@ void	ft_print_err_and_exit(t_err err, char *msg)
 			time_to_eat \n\
 			time_to_sleep \n\
 			[number_of_times_each_philosopher_must_eat] 🐥\n");
-	exit(err);
+	return (err);
 }
 
 /**
@@ -43,12 +44,12 @@ void	ft_print_err_and_exit(t_err err, char *msg)
  * Prints error message.
  * Calls cleanup function to free reserved memory.
  * @param data 	Struct with metadata of the program.
+ * @return err	ERR_MALLOC
  */
-void	ft_err_malloc(t_meta *data)
+t_err	ft_err_malloc(t_meta *data)
 {
 	printf("Malloc encountered an error. System reset initialised.\n");
-	ft_cleanup(data);
-	exit(ERR_MALLOC);
+	return (ERR_MALLOC);
 }
 
 /**
@@ -57,12 +58,13 @@ void	ft_err_malloc(t_meta *data)
  * Prints error message.
  * Calls cleanup function to free reserved memory.
  * @param data 	Struct with metadata of the program.
+ * @return err	ERR_MUTEX_INIT
  */
-void	ft_err_mutex_init(t_meta *data)
+t_err	ft_err_mutex_init(t_meta *data)
 {
 	printf("Mutex init encountered an error. System reset initialised.\n");
 	ft_cleanup(data);
-	exit(ERR_MUTEX_INIT);
+	return (ERR_MUTEX_INIT);
 }
 
 /**
@@ -72,13 +74,14 @@ void	ft_err_mutex_init(t_meta *data)
  * Calls cleanup function to free reserved memory.
  * @param data 			Struct with metadata of the program.
  * @param curr_index	Index of the thread whose creation failed.
+ * @return err	ERR_THREAD_CREATE
  */
-void	ft_err_thread_create(t_meta *data, int curr_index)
+t_err	ft_err_thread_create(t_meta *data, int curr_index)
 {
 	printf("Thread creation encountered an error. System reset initialised.\n");
 	ft_stop_join_threads(data, curr_index);
 	ft_cleanup(data);
-	exit(ERR_THREAD_CREATE);
+	return (ERR_THREAD_CREATE);
 }
 
 /**
