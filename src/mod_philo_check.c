@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 17:01:35 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/15 11:39:13 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/15 12:19:31 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	ft_manage_philos(t_meta *data)
  * to the period since the last meal was consumed is
  * greater than the time to die.
  * 
+ * A philo can only starve, if he is not full yet.
  * @param philo 	Philo in question.
  * @return true 	Philo has starved.
  * @return false 	Philo is still kicking it.
@@ -55,7 +56,8 @@ bool	ft_starved(t_philo *philo)
 
 	ded = false;
 	pthread_mutex_lock(&philo->mtx_meal_stats);
-	if (ft_get_time() - philo->last_meal > philo->params->time_to_die)
+	if (ft_get_time() - philo->last_meal > philo->params->time_to_die
+		&& ft_get_status(philo) != FULL)
 		ded = true;
 	pthread_mutex_unlock(&philo->mtx_meal_stats);
 	if (ded)
