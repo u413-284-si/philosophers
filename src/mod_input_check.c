@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:07:16 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/15 17:15:52 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/15 18:11:18 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,7 @@ t_err	ft_check_argc(int argc)
  * 
  * Start from argument 1 (first parameter after program name).
  * End with argument argc - 1 (last parameter).
- * If empty string found, return err message and exit with
- * according error value.
+ * If empty string found, return err message and code.
  * @param argc 	Amout of input arguments.
  * @param argv 	Array of strings containing the arguments.
  * @return t_err	ERR_EMPTYSTR, SUCCESS
@@ -84,8 +83,7 @@ t_err	ft_check_empty_str(int argc, char **argv)
  * 
  * Start from argument 1 (first parameter after program name).
  * End with argument argc - 1 (last parameter).
- * If non-numeric char found, return err message and exit with
- * according error value. 
+ * If non-numeric char found, return err message and code. 
  * @param argc 
  * @param argv
  * @return t_err	ERR_NONNUMERIC, SUCCESS
