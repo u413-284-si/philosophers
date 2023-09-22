@@ -5,6 +5,7 @@
 		"mod_mutex.h": "c",
 		"mod_setup.h": "c",
 		"mod_cleanup.h": "c",
-		"mod_philo_check.h": "c"
+		"mod_philo_check.h": "c",
+		"mod_forks.h": "c"
 	}
 }

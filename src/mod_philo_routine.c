@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 12:47:34 by sqiu              #+#    #+#             */
-/*   Updated: 2023/09/15 11:46:06 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/09/22 11:35:27 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ void	*ft_so_lonely(t_philo *philo)
  * 
  * Check if philo has starved/is dead or is full. If yes, abort.
  * 
- * All philos except the last first try to pick up the left fork
- * then the right. The last one does it the other way round to
+ * Philos with an even ID try to pick up the left fork
+ * then the right. Those with an odd ID do it the other way round to
  * avoid a dead lock.
  * 
  * While trying to pick up a fork the philo might starve in which
@@ -83,7 +83,7 @@ int	ft_vivere(t_philo *philo)
 {
 	if (ft_get_status(philo) >= FULL)
 		return (-1);
-	if (philo->id != philo->params->num_philos)
+	if (philo->id % 2 == 0)
 	{
 		if (ft_left_right_routine(philo) == -1)
 			return (-1);
