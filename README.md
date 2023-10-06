@@ -1,8 +1,7 @@
 # philosophers
 Dijkstra's hungry philosophers
 
-![image](https://github.com/u413-284-si/philosophers/assets/66411482/50c2798b-31bc-4b23-a8af-585fa3f37d28)
-<img src="image" width="200" height="100">
+<img src="https://github.com/u413-284-si/philosophers/assets/66411482/50c2798b-31bc-4b23-a8af-585fa3f37d28" width="500" height="250">
 
 ## Intro
 This project is an implementation of the popular *dining philosophers problem* formulated by Edsger Dijkstra in 1965 and further on elaborated by Tony Hoare.
