@@ -2,10 +2,11 @@
 Dijkstra's hungry philosophers
 
 ![image](https://github.com/u413-284-si/philosophers/assets/66411482/50c2798b-31bc-4b23-a8af-585fa3f37d28)
+<img src="image" width="200" height="100">
 
 ## Intro
 This project is an implementation of the popular *dining philosophers problem* formulated by Edsger Dijkstra in 1965 and further on elaborated by Tony Hoare.
-A certain number of n philosophers are sitting at the same table. Between each philosopher is a fork resulting in n forks on the table. The dish served is a kind of spaghetti which has to be eaten with two forks. In this instance each philosopher can alternately think, eat or sleep. Most importantly a philosopher can only eat their spaghetti when they have two forks in their hands. Thus two forks will only be available when their two nearest neighbors are thinking or sleeping, not eating. After finishing eating, the philosopher will put down both forks making them available to his neighbours. 
+A certain number of *n* philosophers are sitting at the same table. Between each philosopher is a fork resulting in *n* forks on the table. The dish served is a kind of spaghetti which has to be eaten with two forks. In this instance each philosopher can alternately think, eat or sleep. Most importantly a philosopher can only eat their spaghetti when they have two forks in their hands. Thus two forks will only be available when their two nearest neighbors are thinking or sleeping, not eating. After finishing eating, the philosopher will put down both forks making them available to his neighbours. 
 
 The essence of the problem is to ensure that each philosopher has the opportunity to eat in time before starving to death - a scenario which is preferably to be avoided as one can imagine.
 
