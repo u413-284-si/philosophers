@@ -22,7 +22,7 @@ Following a short summary of the topics covered by the project:
 ## Installation and Usage
 
 ```
-git clone git@github.com:u413-284-si/philosophers.git philo
+git clone --recursive git@github.com:u413-284-si/philosophers.git philo
 cd philo
 make
 ./philo number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]
